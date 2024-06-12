@@ -12,3 +12,12 @@ git push -u origin main
 完成
 
 二、参考notion的部署next.js，初始化
+ TypeScript 的 JSX 语法的扩展。JSX 是 JavaScript 的语法扩展
+ js：比如砖块，jsx：像乐高积木，由不同的砖块组成
+ TypeScript (TS):它们不仅包括了砖块，还有钢筋和混凝土。TSX 可以比喻为用TS制成的预制建筑模块
+
+ next.js隐藏了 webpack 的配置细节，使得开发者不需要直接与 webpack 配置打交道。
+ next.js 提供了一个内置的、基于 Node.js 的 HTTP 服务器。
+
+ 三、将v7.4.1代码迁移过来，并成功运行
+ 
