@@ -4,7 +4,8 @@ import TopLevelDomainQueryResults from '../TopLevelDomainQueryResults'; // 确�
 
 const DomainTable = ({ domainData, results }) => {
   const safeData1 = domainData || {};
-  const safeData = JSON.parse(safeData1);//将字符串转变为json对象
+  //const safeData = JSON.parse(safeData1);//先运行起来
+  const safeData={}
   //console.log(safeData)
 
   return (

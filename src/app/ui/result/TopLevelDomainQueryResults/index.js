@@ -3,8 +3,8 @@ import React from 'react';
 
 const TopLevelDomainQueryResults = ({ results }) => {
   // Object.entries将results对象转换为键值对数组
-  const resultEntries = Object.entries(results);
-
+  //const resultEntries = Object.entries(results);
+  const resultEntries=[]
   return (
     <div style={{ margin: '15px',backgroundColor: 'white'   }}>
       <div style={{ margin: '5px', padding: '2px' }}>

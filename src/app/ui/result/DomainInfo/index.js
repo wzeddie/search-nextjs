@@ -2,8 +2,8 @@
 import React from 'react';
 import DomainTable from '../DomainTable';
 import BackButton from '../BackButton';
-import Footer from '../Footer';
-import Header from '../Header';
+import Footer from '../../Footer';
+import Header from '../../Header/Header';
 import ResultTittle from '../ResultTittle';
 
 const DomainInfo = ({ domainData, results }) => {

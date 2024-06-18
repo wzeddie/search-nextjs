@@ -1,16 +1,12 @@
-
+//入口页面
 'use client'
-import Header from '../components/Header';
-import DomainSearchForm from '../components/DomainSearchForm';
-import Footer from '../components/Footer'; // 确保路径正确
+import DomainSearchForm from '@/app/ui/home/DomainSearchForm';//@项目的根目录
 export default function Page() {
-  const initialDomains = window.__INITIAL_DOMAINS__ || ['test1','test2','test3']; 
+  const initialDomains = ['test1','test2','test3']; 
 
-  return (<main>
-    <Header />
+  return (
     <DomainSearchForm initialDomains={initialDomains} />
-    <Footer />
-  </main>)
+  )
 }
 
 

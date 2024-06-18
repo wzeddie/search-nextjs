@@ -20,4 +20,18 @@ git push -u origin main
  next.js 提供了一个内置的、基于 Node.js 的 HTTP 服务器。
 
  三、将v7.4.1代码迁移过来，并成功运行
- 
+
+ 四、按next.js的框架重新拆分并布局
+ 1、按界面层
+  入口页 app/page.tsx-home组件
+  结果页，app/result/page.tsx-result组件
+  布局页，Layout.tsx
+ 2、组件层 
+ Ui下的各个组件
+入口home，
+Result组件
+ 组件层 
+
+ 数据层
+ Action和data.ts
+行为和数据库查询
