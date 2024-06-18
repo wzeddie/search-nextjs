@@ -36,3 +36,5 @@ git push -u origin main
 recentlysearched组件初始的时候，自动调用数据库查询函数data.ts-mogboda,env等返回组件数据，由组件进行显示。
 数据库查询函数data.ts，链接数据库，查询最近的三条记录，并返回数组形式。
 recentlysearched,行为组件action.ts，触发点击事件，点击后提交post请求到服务端。
+
+domainsearchform，支持输入域名，然后发送到服务端进行查询。
