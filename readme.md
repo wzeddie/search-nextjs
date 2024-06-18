@@ -20,18 +20,19 @@ git push -u origin main
  next.js 提供了一个内置的、基于 Node.js 的 HTTP 服务器。
 
  三、将v7.4.1代码迁移过来，并成功运行
-
+主要是组件代码，和src中的服务器源代码。
  四、按next.js的框架重新拆分并布局
  1、按界面层
-  入口页 app/page.tsx-home组件
-  结果页，app/result/page.tsx-result组件
-  布局页，Layout.tsx
+  入口页 app/page.tsx，收集home组件中的 domainsearchform.
+  结果页，app/result/page.tsx-result组件.
+  布局页，Layout.tsx，定义页眉和页脚等。
  2、组件层 
- Ui下的各个组件
-入口home，
-Result组件
- 组件层 
+ Ui下的各个组件页眉，页脚组件，以及入口home组件和Result组件
+ 3、数据和行为层
+ Action.ts和data.ts行为和数据库查询
 
- 数据层
- Action和data.ts
-行为和数据库查询
+# v8.0.1 修改首页page.tsx，待修改需求
+目前由domainsearchform继续调用 recentlysearched。应该修改直接page来调用。组件之间统一通过page页面进行交互和传递数据。
+recentlysearched组件初始的时候，自动调用数据库查询函数data.ts-mogboda,env等返回组件数据，由组件进行显示。
+数据库查询函数data.ts，链接数据库，查询最近的三条记录，并返回数组形式。
+recentlysearched,行为组件action.ts，触发点击事件，点击后提交post请求到服务端。
