@@ -32,9 +32,17 @@ git push -u origin main
  Action.ts和data.ts行为和数据库查询
 
 # v8.0.1 修改首页page.tsx，待修改需求
-目前由domainsearchform继续调用 recentlysearched。应该修改直接page来调用。组件之间统一通过page页面进行交互和传递数据。
+目前由domainsearchform继续调用 recentlysearched。应该修改直接page来调用。组件之间统一通过page页面进行交互和传递数据。_done
 recentlysearched组件初始的时候，自动调用数据库查询函数data.ts-mogboda,env等返回组件数据，由组件进行显示。
 数据库查询函数data.ts，链接数据库，查询最近的三条记录，并返回数组形式。
+-数据库是，需要安装 "mongodb": "^4.4.2",手动配置json，然后npm install
+可以显示正常组件信息
+
+
+
+
+
+
 recentlysearched,行为组件action.ts，触发点击事件，点击后提交post请求到服务端。
 
 domainsearchform，支持输入域名，然后发送到服务端进行查询。

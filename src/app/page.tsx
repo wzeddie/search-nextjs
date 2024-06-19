@@ -1,11 +1,14 @@
 //入口页面
-'use client'
-import DomainSearchForm from '@/app/ui/home/DomainSearchForm';//@项目的根目录
+import DomainSearchForm from '@/app/ui/home/DomainSearchForm';//@项目的根目录，需要在ts配置文件中提前配置好
+import RecentlySearched from '@/app/ui/home/RecentlySearched';
 export default function Page() {
-  const initialDomains = ['test1','test2','test3']; 
 
   return (
-    <DomainSearchForm initialDomains={initialDomains} />
+    <section className="container bg-gray-50">
+      <DomainSearchForm />
+      <RecentlySearched />
+    </section>
+
   )
 }
 

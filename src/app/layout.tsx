@@ -5,10 +5,10 @@ import Header from './ui/header.js';//页眉
 import Footer from './ui/footer.js';//页脚
 export const metadata: Metadata = {
   title: {
-    template: '%s | Acme Dashboard',
-    default: 'Acme Dashboard',
+    template: '%s | Search Domain',
+    default: 'Search Domain',
   },
-  description: 'The official Next.js Learn Dashboard built with App Router.',
+  description: 'Enter the domain name you wish to query.',
   metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
 };
 export default function RootLayout({
