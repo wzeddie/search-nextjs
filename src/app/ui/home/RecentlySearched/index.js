@@ -1,9 +1,9 @@
 //最近的三个查询网址组件RecentlySearched
 
-import { dbGetTreeData } from '@/app/lib/data.ts';//导入数据库查询函数
+import { getTreeData } from '@/app/lib/getTreeData';//导入数据库查询函数
 
 export default  async function  RecentlySearched( ){
-  const temptreedata = await dbGetTreeData();//从数据库获取数据域名+后缀形式
+  const temptreedata = await getTreeData();//从数据库获取数据域名+后缀形式
   console.log(temptreedata)
  const recentDomains= temptreedata
   const isClickable = true; // 控制链接可点击状态

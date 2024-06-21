@@ -1,3 +1,4 @@
+//发起批量查询
 const { getapi } = require('@/app/lib/getapi'); // 导入第三方api查询模块
 
 export async function piliang_getapi(wwwname, suffix) {
@@ -28,15 +29,15 @@ export async function piliang_getapi(wwwname, suffix) {
     }
 
     try {
-        // 等待所有 Promise 完成promises
+        // 等待所有 Promise 完成promises，打印显示结果
         await Promise.all(promises)
             .then(results => {
                 // 打印每个 Promise 的结果
                 results.forEach((result, index) => {
-                    console.log(`Promise #${index + 1} result:`, result);
+                    //console.log(`Promise #${index + 1} result:`, result);
                 });
                 // 如果你需要打印整个结果数组
-                console.log('All promises results:', results);
+                //console.log('All promises results:', results);
             })
             .catch(error => {
                 // 如果任何一个 Promise 失败，这里会打印错误
