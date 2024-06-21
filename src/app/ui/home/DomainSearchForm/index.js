@@ -42,7 +42,7 @@ const DomainSearchForm = () => {
         <p className="mt-4 sm:text-xl/relaxed">
           enter the domain name you wish to query ，only domain  with the following suffixes are supported: com, net, org, me, xyz, info, io, co, ai, biz, us, etc.
         </p>
-        <form className="space-y-4 font-[sans-serif] max-w-md mx-auto" id="myForm" method="post" action="/result" onSubmit={handleSubmit} ref={formRef}>
+        <form className="space-y-4 font-[sans-serif] max-w-md mx-auto" id="myForm" method="post" action="/api/submit-form" onSubmit={handleSubmit} ref={formRef}>
           <div className="max-w-md mx-auto font-[sans-serif]">
             <label className="mb-2 text-sm text-black block">Enter Domain  Like: www.xxx.com</label>
 

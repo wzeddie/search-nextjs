@@ -11,8 +11,8 @@ const DomainInfo = ({ domainData, results }) => {
   return (
     <div>
       <Header />
-      <div class=" bg-gray-50 font-[sans-serif] my-4">
-        <div class="max-w-7xl mx-auto">
+      <div className=" bg-gray-50 font-[sans-serif] my-4">
+        <div className="max-w-7xl mx-auto">
           <ResultTittle/>
           <DomainTable domainData={domainData} results={results} />
           <BackButton />

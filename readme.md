@@ -46,3 +46,4 @@ recentlysearched组件初始的时候，自动调用数据库查询函数data.ts
 recentlysearched,行为组件action.ts，触发点击事件，点击后提交post请求到服务端。
 
 domainsearchform，支持输入域名，然后发送到服务端进行查询。
+什么时候插入数据库

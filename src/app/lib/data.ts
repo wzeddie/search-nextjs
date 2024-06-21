@@ -14,7 +14,7 @@ export async function dbGetTreeData(
             name: doc.name,
             suffix: doc.suffix
         }));
-        await client.close(); //关闭数据库
+       // await client.close(); //关闭数据库
         const initialDomains = extractedData.map(domain => `www.${domain.name}.${domain.suffix}`);//转换为完整的网址形式
 
         return initialDomains//返回数组类型的三条记录

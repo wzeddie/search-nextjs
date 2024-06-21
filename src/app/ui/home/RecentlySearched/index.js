@@ -1,4 +1,4 @@
-//最近的三个查询网址组件
+//最近的三个查询网址组件RecentlySearched
 
 import { dbGetTreeData } from '@/app/lib/data.ts';//导入数据库查询函数
 
