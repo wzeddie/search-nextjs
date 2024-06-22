@@ -23,12 +23,9 @@ export default function Page() {
         <div className="max-w-7xl mx-auto">
           <ResultTittle />
           <section className="grid grid-cols-1 md:grid-cols-4 gap-1">
-
           <DomainTable domainname={domainname} />
           <TopLevelDomainQueryResults domainname={domainname}/>
-
-          </section>
-          
+          </section> 
           <BackButton />
         </div>
       </div>

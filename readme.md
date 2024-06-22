@@ -56,3 +56,9 @@ getServerSideProps,在服务端组件调用，用于接收函数，在服务端�
 给首页RS组件添加隐藏表单input，来触发pages/api接口
 
 给结果页TP组件添加类似的form表单触发pages/api接口
+
+在 Next.js 中，组件的职责和环境通常决定了它们是否是服务器端组件或客户端组件。
+以下是一些常见的约定和示例：
+所有的page组件,page.js/jsx/ts/tsx，都是服务端组件，获取数据和服务器端渲染（SSR）。
+lib文件下的库文件，都是服务端组件，包含数据获取或其他与服务器端交互的逻辑
+app/ui或者app/components，是客户端组件

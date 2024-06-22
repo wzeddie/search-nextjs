@@ -1,5 +1,5 @@
 //插入数据库模块
-const { connectToDatabase } = require('@/app/lib/db');//导入基础数据库连接模块
+const { connectToDatabase } = require('@/app/lib/connectToDB');//导入基础数据库连接模块
 
 export async function addToMongoDB(sendData) {
     let client;

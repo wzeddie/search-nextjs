@@ -1,5 +1,5 @@
 //域名结果详情组件
-const { getapi } = require('@/app/lib/getapi');//导入第三方api查询模块
+const { getapi } = require('@/app/lib/get_domain_api');//导入第三方api查询模块
 //const { addToMongoDB } = require('@/app/lib/addToMongoDB');//在组件中使用数据库插入函数会报错
 export default async function DomainTable({ domainname }) {//传入参数
   let safeData = {}

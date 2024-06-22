@@ -10,12 +10,8 @@ const DomainSearchForm = () => {
   const handleSubmit = (event) => {
     console.log('client to search:', domainName);
     setIsSubmittable(false);    // 表单提交后，设置为不可再提交
-    // 手动触发表单提交
-    // if (formRef.current) {
-    //   formRef.current.submit();
-    // }
+    //submit会自动触发form
   };
-  //处理input清空输入的事件
   const handleInputClick = () => {
     setDomainName(''); // 清空输入框的值
   };
@@ -23,15 +19,7 @@ const DomainSearchForm = () => {
   const handleInputChange = (event) => {
     setDomainName(event.target.value); // 更新输入框的值到状态
   };
-  // 这个函数将被 RecentlySearched 组件调用，回调函数
-  const handleDomainClick = (domain) => {
-    if (domainInputRef.current) {
-      domainInputRef.current.value = domain;//设置输入框的值为传入的 domain
-    }
-    if (formRef.current) {
-      formRef.current.submit(); // 直接调用表单的 submit 方法触发表单提交
-    }
-  };
+ 
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">

@@ -1,5 +1,5 @@
 //发起批量查询
-const { getapi } = require('@/app/lib/getapi'); // 导入第三方api查询模块
+const { getapi } = require('@/app/lib/get_domain_api'); // 导入第三方api查询模块
 
 export async function piliang_getapi(wwwname, suffix) {
     const suffixs = ['com', 'net', 'org', 'me', 'xyz', 'info', 'io', 'co', 'ai', 'biz', 'us', 'etc'];

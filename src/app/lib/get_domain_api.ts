@@ -14,12 +14,7 @@ export async function getapi(wwwname, suffix) {
             });
             res.on('end', () => {
                 try {
-                    const jsonData = JSON.parse(mydata);
-                    // if (jsonData.available === false) {
-                    //     piliang_yuming_able[jsonData.domain] = 'registered';
-                    // } else if (jsonData.available === true) {
-                    //     piliang_yuming_able[jsonData.domain] = 'unregistered';
-                    // }
+                    const jsonData = JSON.parse(mydata);  
                     resolve(jsonData);
                 } catch (e) {
                     reject(e);

@@ -1,6 +1,6 @@
 //批量查询结果组件
 //import React from 'react';
-const { piliang_getapi } = require('@/app/lib/piliang_getapi');//导入第三方api查询模块
+const { piliang_getapi } = require('@/app/lib/piliang_get_domain_api');//导入第三方api查询模块
 
 export default async function TopLevelDomainQueryResults({ domainname }) {//传入参数
   const domainParts = domainname.split('.');

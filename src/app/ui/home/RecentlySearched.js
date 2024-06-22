@@ -4,8 +4,6 @@ import { useState } from 'react';
 export default function RecentlySearched({recentDomains}) {
   const [isClickable, setIsClickable] = useState(true); // 控制链接可点击状态
 
-
-
   const onClick_a = (event, domain) => {
     event.preventDefault(); // 阻止链接默认的导航
     if (isClickable) {

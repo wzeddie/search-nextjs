@@ -12,7 +12,7 @@ const client = new MongoClient(uri, {
 const connectToDatabase = async () => {
     try {
         await client.connect();
-        console.log('Connected to MongoDB');
+        //console.log('Connected to MongoDB');
         return client; // 返回MongoClient实例，方便查询一次data后关闭client连接。
 
        // return client.db('mydatabase'); // 返回数据库实例，这种不能关闭。客户端连接池来管理数据的链接。
