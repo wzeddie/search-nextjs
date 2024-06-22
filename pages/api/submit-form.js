@@ -1,6 +1,6 @@
 // pages/api/submit-form.js
 //addToMongoDB插入数据库的操作必须要在服务端运行，api下的接口基本上为服务端。
-//为什么不能在组件中插入数据库，提示dns报错
+//为什么不能在组件中插入数据库，提示dns报错-客户端组件不运行直接操作数据库，只能是服务端的组件页面，比如page.js等
 const { getapi } = require('@/app/lib/getapi');//导入第三方api查询模块
 const { addToMongoDB } = require('@/app/lib/addToMongoDB');
 

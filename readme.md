@@ -52,3 +52,7 @@ domainsearchform，支持输入域名，然后发送到服务端进行查询。
 
 getServerSideProps,在服务端组件调用，用于接收函数，在服务端对应的页面使用。
 
+在src/app，有page.js，也有login/page.js，也有lib/data.ts，等中哪些是服务端组件，哪些是客户端组件
+给首页RS组件添加隐藏表单input，来触发pages/api接口
+
+给结果页TP组件添加类似的form表单触发pages/api接口
