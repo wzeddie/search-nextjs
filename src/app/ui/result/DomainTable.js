@@ -1,6 +1,6 @@
 //域名结果详情组件
+//该组件未调用数据库插入，所以默认也是客户端组件。
 const { getapi } = require('@/app/lib/get_domain_api');//导入第三方api查询模块
-//const { addToMongoDB } = require('@/app/lib/addToMongoDB');//在组件中使用数据库插入函数会报错
 export default async function DomainTable({ domainname }) {//传入参数
   let safeData = {}
   try {
@@ -9,10 +9,8 @@ export default async function DomainTable({ domainname }) {//传入参数
     if (domainParts.length > 2) {
       const suffix = domainParts[2];
       const wwwname = domainParts[1];
-      //console.log(wwwname, suffix);
-      safeData = await getapi(wwwname, suffix);//发起查询
+      safeData = await getapi(wwwname, suffix);//发起查询，（问题：与api重复发起，这个组件应该修改为接收props，然后进行渲染即可）
       //console.log(safeData)
-      //await addToMongoDB(safeData)
     } else {
       console.log('Received wrong domain ');//输入的查询域名格式不符
     }

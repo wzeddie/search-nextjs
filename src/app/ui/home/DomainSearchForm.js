@@ -1,23 +1,21 @@
-//获取用户input的form组件
+//获取用户input的form组件,form表单action指向服务端api，action="/api/submit-form，来处理请求。
 'use client'
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 const DomainSearchForm = () => {
   const [domainName, setDomainName] = useState('');//初始目标域名为空
-  const formRef = useRef(null); // 使用 useRef 来引用 form 元素
-  const domainInputRef = useRef(null); // 使用 useRef 来引用 input 元素
   const [isSubmittable, setIsSubmittable] = useState(true); // 控制按钮可点击状态
   // 处理表单提交的函数
   const handleSubmit = (event) => {
-    console.log('client to search:', domainName);
-    setIsSubmittable(false);    // 表单提交后，设置为不可再提交
+    //console.log('client to search:', domainName);
+    setIsSubmittable(false);    // 设置按钮为不可再提交
     //submit会自动触发form
   };
   const handleInputClick = () => {
-    setDomainName(''); // 清空输入框的值
+    setDomainName(''); // 触发光标事件，清空输入框的值
   };
-  // 处理输入框值变化的函数,通过setDomainName更新domainName变量
+  // 处理输入框值变化的函数
   const handleInputChange = (event) => {
-    setDomainName(event.target.value); // 更新输入框的值到状态
+    setDomainName(event.target.value); // 更新输入框的值
   };
  
 
@@ -30,7 +28,7 @@ const DomainSearchForm = () => {
         <p className="mt-4 sm:text-xl/relaxed">
           enter the domain name you wish to query ，only domain  with the following suffixes are supported: com, net, org, me, xyz, info, io, co, ai, biz, us, etc.
         </p>
-        <form className="space-y-4 font-[sans-serif] max-w-md mx-auto" id="myForm" method="post" action="/api/submit-form" onSubmit={handleSubmit} ref={formRef}>
+        <form className="space-y-4 font-[sans-serif] max-w-md mx-auto" id="myForm" method="post" action="/api/submit-form" onSubmit={handleSubmit} >
           <div className="max-w-md mx-auto font-[sans-serif]">
             <label className="mb-2 text-sm text-black block">Enter Domain  Like: www.xxx.com</label>
 
@@ -50,7 +48,6 @@ const DomainSearchForm = () => {
                 onClick={handleInputClick}//添加光标鼠标点击事件
                 onChange={handleInputChange}//通过事件触发setDomainName，然后在更新domainName
                 placeholder="www.example.com"
-                ref={domainInputRef}
               />
             </div>
           </div>

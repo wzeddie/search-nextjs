@@ -1,6 +1,8 @@
 //批量查询结果组件
-//import React from 'react';
+//此为服务端组件，批量，异步获取
+//import React, { useState, useEffect } from 'react';//客户组件时需要加载
 const { piliang_getapi } = require('@/app/lib/piliang_get_domain_api');//导入第三方api查询模块
+
 
 export default async function TopLevelDomainQueryResults({ domainname }) {//传入参数
   const domainParts = domainname.split('.');
