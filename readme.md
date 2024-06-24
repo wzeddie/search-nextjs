@@ -81,7 +81,8 @@ app/ui或者app/components，是客户端组件
 解决客户端控制面板提示bug问题
 解决TP鼠标滑过去有样式变化问题
 
-将a元素用link代替:
+1、将a元素用link代替:
+link组件的常规用法，nav导航，页面之间路由，不需要重新加载页面。
 在 Next.js 中，服务端组件不能直接使用客户端组件中的钩子（如 useRouter），这会导致 NextRouter was not mounted 的错误。
 如何解决
 
