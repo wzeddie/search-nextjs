@@ -4,8 +4,8 @@
 const { piliang_getapi } = require('@/app/lib/piliang_get_domain_api');//导入第三方api查询模块
 
 
-export default async function TopLevelDomainQueryResults({ domainname }) {//传入参数
-  const domainParts = domainname.split('.');
+export default async function TopLevelDomainQueryResults({ user_domain }) {//传入参数
+  const domainParts = user_domain.split('.');
   const suffix = domainParts[2];
   const wwwname = domainParts[1];
   //针对domainname发起批量查询，返回results
@@ -24,7 +24,7 @@ export default async function TopLevelDomainQueryResults({ domainname }) {//传�
             {/* 遍历键值对数组并展示每个结果 */}
             {resultEntries.map(([key, value], index) => (
               <div key={index} style={{ padding: '15px' }}>
-                <a href={`/result?domainname=www.${encodeURIComponent(key)}`} style={{ textDecoration: 'none' }} onClick={() => console.log('Key clicked:', key)}>
+                <a href={`/result?user_domain=www.${encodeURIComponent(key)}`} style={{ textDecoration: 'none' }} onClick={() => console.log('Key clicked:', key)}>
                   {key}
                 </a> - {value}
               </div>

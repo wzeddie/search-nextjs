@@ -73,8 +73,63 @@ app/ui或者app/components，是客户端组件
 
 # 打版本 v8.1.0
 
+# v8.1.1，客户端取消form表单形式，数据处理统一api
+
+1、首页通过API 路由和 Fetch API 
+利用js的fetch api发起post请求，服务端接收请求发起查询，如果查询正常，则执行插入数据库，并下发数据。
+fetch接收数据后，跳转结果页面并在URL中传递参数。
+问题1：fetch 表单格式
+在 Next.js 中处理表单数据时，FormData 对象发送的数据默认会使用 multipart/form-data 格式，而不是 JSON 格式。因此，在服务器端很难直接使用 req.body 获取数据。
+multipart/form-data 格式是什么，为什么默认用这格式——媒体类型，文本、文件、二进制数据，与 application/x-www-form-urlencoded 和 application/json 等其他格式的主要区别
+ fetch('/api/submit', {
+      method: 'POST',
+      body: formData//格式解析不了
+    })
+
+  const data = Object.fromEntries(formData.entries());
+  fetch('/api/submit-form-2', {//对应后台api接口
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',//设置为服务端可以方便获取的接收格式
+      },
+      body: JSON.stringify(data),//json要转换为字符串类型
+    })
+
+问题2：NextRouter was not mounted.
+父组件是服务端组件，子组件是客户端组件因为用了  const router = useRouter();提示错误：NextRouter was not mounted。
+您应该始终从 app next/navigation 目录内的页面和组件中导入 useRouter ，而不是 next/router 在处理页面和组件时导入，这是next13版本之后。
+
+import { useRouter } from 'next/navigation';
+
+问题3：如何解决客户端传递数据。
+在客户端收到domain数据后，跳转result.js,并将要查询的数据传递过去
+  a、小且安全的数据，通过url方式传递 window.location.href = `/result?${queryParams}`;
+  b、较大或包含非 URL 安全字符，启用缓存，result来读取
+sessionStorage.setItem('domaindata', JSON.stringify(data));
+window.location.href = '/result';
+result页面来读取
+const domainDataString = sessionStorage.getItem('domaindata');
+   c、使用Next.js 中的 useRouter前端路由方式navigation
+   router.push(
+           '/result?user_domain=' + encodeURIComponent(JSON.stringify(data))
+        );
+        结果页的接收方式，并传递给组件，组件进行渲染。
+  import { useSearchParams } from 'next/navigation'
+  const searchParams = useSearchParams();
+  const user_domain = searchParams.get('user_domain') || 'default';//在路由中获取参数
+
+
+暂时屏蔽的结果页的批量查询问题
+
+# v8.1.2，解决客户端URL明文传递data数据的问题
+
+import { redirect } from 'next/navigation'//服务端路由
+
 # 下一版本的改造内容：
-完全的next.js技术化，比如首页要支持客户端部分渲染，客户端发起api查询等等，取消form表单。
+
+默认情况下， app 目录中的所有组件都是服务器组件，但钩子仅在客户端可用。因此，您必须在涉及钩子的每个文件的顶部添加该 use client 指令。
+
+# 空
 解决pages/api和结果页，重复发起请求问题，一次domain，两次查询
 添加删除功能，添加数据库修改功能，增删改查完整的功能。
 添加用户登录和状态管理，签到签退问题。
