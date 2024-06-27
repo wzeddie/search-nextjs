@@ -35,6 +35,7 @@ export default function Page() {
     }
   };
 
+  //以下代码没有用到钩子，导致数据变更后，无法及时获取，并更新组件。
   // const searchParams = useSearchParams();
   // const uniqueId = searchParams.get('user_domain');//在路由中获取参数
   // console.log('result get uniqueId:', uniqueId)
