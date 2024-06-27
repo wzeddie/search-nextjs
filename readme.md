@@ -122,8 +122,28 @@ const domainDataString = sessionStorage.getItem('domaindata');
 暂时屏蔽的结果页的批量查询问题
 
 # v8.1.2，解决客户端URL明文传递data数据的问题
+在api中增加服务端的内存控制，用于保存数据临时
+然后，在 result 页中，通过唯一标识符获取存储在服务器端的参数：
+最后，创建一个API来下发resutl的实际参数：
+global.tempStorage = global.tempStorage || {};node.js支持全局变量
 
-import { redirect } from 'next/navigation'//服务端路由
+学会全局变量
+学会组件的条件渲染，初始化null，然后进行条件渲染
+            {user_domain && <DomainTable user_domain={user_domain} />}
+
+待解决，为什么会多次请求。
+
+GET / 200 in 429ms
+api-received domainname: www.114.com
+saved the tempStorage[uniqueId]  lxxetvql58rn4wtwg1t
+ POST /api/submit-form-2 302 in 5654ms
+ GET /result?user_domain=lxxetvql58rn4wtwg1t 200 in 140ms
+sent-right-domain，get id: lxxetvql58rn4wtwg1t
+ GET /api/sent-right-domain?user_domain=lxxetvql58rn4wtwg1t 200 in 9ms
+sent-right-domain，get id: lxxetvql58rn4wtwg1t
+ GET /api/sent-right-domain?user_domain=lxxetvql58rn4wtwg1t 304 in 12ms
+
+客户端还会打印4次。
 
 # 下一版本的改造内容：
 

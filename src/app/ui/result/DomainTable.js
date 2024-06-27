@@ -2,9 +2,11 @@
 //该组件未调用数据库插入，所以默认也是客户端组件。
 const { getapi } = require('@/app/lib/get_domain_api');//导入第三方api查询模块
 export default  function DomainTable({ user_domain }) {//传入参数
-  // let safeData = JSON.parse(user_domain)
+  console.log('DomainTable get the user_domain is:',user_domain)
+  const safeData = user_domain
   //console.log('DomainTable:',user_domain)
-  const safeData=JSON.parse(user_domain)//接收数据，并转换为json格式
+  //const safeData=JSON.parse(user_domain)//接收数据，并转换为json格式
+
   //console.log('DomainTable safeDatas:',safeData.domain)
 
   // try {
