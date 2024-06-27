@@ -126,7 +126,7 @@ const domainDataString = sessionStorage.getItem('domaindata');
 然后，在 result 页中，通过唯一标识符获取存储在服务器端的参数：
 最后，创建一个API来下发resutl的实际参数：
 global.tempStorage = global.tempStorage || {};node.js支持全局变量
-
+fechapi，什么时候相对URL，什么时候绝对URL。
 学会全局变量
 学会组件的条件渲染，初始化null，然后进行条件渲染
             {user_domain && <DomainTable user_domain={user_domain} />}
