@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 const DomainSearchForm = () => {
   // 使用严格模式来帮助捕获引用错误
-  "use strict";
+  //"use strict";开启这个模式会渲染两次默认
   const router = useRouter();
 
   const [domainName, setDomainName] = useState('');//初始目标域名为空

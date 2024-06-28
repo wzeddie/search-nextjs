@@ -146,9 +146,9 @@ sent-right-domain，get id: lxxetvql58rn4wtwg1t
 客户端还会打印4次。
 
 # 下一版本的改造内容：
-
+批量查询的结果，如何保存和传递问题
 默认情况下， app 目录中的所有组件都是服务器组件，但钩子仅在客户端可用。因此，您必须在涉及钩子的每个文件的顶部添加该 use client 指令。
-
+新增error，loading等页面
 # 空
 解决pages/api和结果页，重复发起请求问题，一次domain，两次查询
 添加删除功能，添加数据库修改功能，增删改查完整的功能。
@@ -181,3 +181,20 @@ useContext
 用于订阅 React 上下文的变化。虽然这个钩子本身在服务端渲染中没有问题，但如果上下文值依赖于浏览器状态或副作用，就会出问题。
 useLayoutEffect
 与 useEffect 类似，但它在所有 DOM 变更后同步调用。这意味着它在服务端渲染时不会运行，因为服务端没有 DOM。
+
+经验1：
+如何以编程的方式使用导航navigation
+如果要使用 app 目录中的服务器组件（Next.js 13 及更高版本附带），则必须在组件顶部添加 use client 指令才能使用钩子，如下所示：
+"use client";
+import { useRouter } from 'next/navigation';
+export default function Home() {
+  const router = useRouter();
+  console.log(router);
+  return <></>;
+}
+router.push("/some-destination");将新 URL 添加到历史记录堆栈中
+router.replace("/some-target");不添加历史记录，无法通过点击浏览器的后退按钮返回
+ back() 或 该 forward()
+如何在服务端组件控制客户端导航链接
+ import { redirect } from 'next/navigation'
+    redirect('/login')

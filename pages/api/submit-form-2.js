@@ -3,6 +3,8 @@ const { addToMongoDB } = require('@/app/lib/addToMongoDB');//导入插入数据�
 global.tempStorage = global.tempStorage || {};
 
 export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=3600');//设置响应头服务端缓存机制。
+
   if (req.method === 'POST') {
     const { user_domain } = req.body;
     console.log('api-received domainname:', user_domain);

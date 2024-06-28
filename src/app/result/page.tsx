@@ -25,9 +25,19 @@ export default function Page() {
 
   const fetchData = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/sent-right-domain?user_domain=${id}`);
+      const response = await fetch(`http://localhost:3000/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
       const data = await response.json();
-
+  
+      // 打印Cache-Control头部，了解缓存行为
+      const cacheControl = response.headers.get('Cache-Control');
+      console.log('Cache-Control:', cacheControl);
+      if (cacheControl && !cacheControl.includes('no-cache') && !cacheControl.includes('no-store')) {
+        console.log('服务端允许缓存');
+      } else {
+        console.log('服务端禁止缓存');
+      }
+      // 打印其他头部信息，以获取更多的缓存信息
+      console.log('响应头部:', response.headers);
       setUserDomain(data); // 使用 useState 设置 user_domain
 
     } catch (error) {

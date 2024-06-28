@@ -1,5 +1,7 @@
 //global.tempStorage[user_domain];node.js直接获取全局变量
 export default async function getDataHandler(req, res) {
+    res.setHeader('Cache-Control', 'public, max-age=3600');//设置响应头服务端缓存机制。
+
   if (req.method === 'GET') {
     const { user_domain } = req.query;
     console.log('sent-right-domain，get id:',user_domain)
