@@ -130,7 +130,7 @@ fechapi，什么时候相对URL，什么时候绝对URL。
 学会全局变量
 学会组件的条件渲染，初始化null，然后进行条件渲染
             {user_domain && <DomainTable user_domain={user_domain} />}
-# v8.1.3，新增api，解决批量结果查询问题
+# v8.1.2-6.29版本，新增api，解决批量结果查询问题
 新增sent-piliang-domain，通过获取全局变量实现global.tempUser_domain获取用户输入的域名。
 
 
