@@ -133,6 +133,9 @@ fechapi，什么时候相对URL，什么时候绝对URL。
 # v8.1.2-6.29版本，新增api，解决批量结果查询问题
 新增sent-piliang-domain，通过获取全局变量实现global.tempUser_domain获取用户输入的域名。
 
+# v8.1.3 添加loading页面，
+解决需求，在结果页面等待时进行显示
+当你使用 Next.js 的 dynamic() 函数来动态导入组件时，loading.tsx 可以作为默认导出来指定一个组件，这个组件将在被动态导入的组件加载完成之前显示。
 
 待解决，为什么会多次请求。
 

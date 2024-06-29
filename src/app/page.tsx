@@ -5,8 +5,13 @@
 //import RecentlySearched from '@/app/ui/home/RecentlySearched';
 //import ClientWrapper from '@/app/ui/home/ClientWrapper'; // 导入新的客户端组件
 import dynamic from 'next/dynamic';
+import Loading from './loading'; // 导入加载组件
 
-const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), { ssr: false });//动态加载
+const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), {
+  ssr: false,
+  loading: () => <Loading /> // 显示加载组件
+});
+
 import { getTreeData } from '@/app/lib/getTreeData'; // 从数据库中获取就近三条记录，并下发给组件。
 
 export default async function Page() {

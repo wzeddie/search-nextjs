@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';//客户组件时需要加载
 
 export default  function TopLevelDomainQueryResults() {//传入参数
   //初始化时服务器发起获取批量查询结果
-  const [resultEntries, setresultEntries] = useState([]);//初始目标域名为空
+  const [resultEntries, setresultEntries] = useState();//初始目标域名为空
 
   useEffect(() => {
     console.log('TopLevelDomainQueryResults get uniqueId:')
-
+    //setresultEntries([])
     // 调用 fetchData 函数以获取 user_domain 数据
     fetchData();
   }, []); // 空依赖数组意味着这个 effect 只在组件挂载时运行一次
@@ -23,8 +23,8 @@ export default  function TopLevelDomainQueryResults() {//传入参数
       console.error('Fetching data failed:', error);
     }
   };
-
-  return resultEntries.length > 0 &&(
+//条件渲染，当数组有结果时才返回渲染组件
+  return resultEntries != null &&(
     <div className="col-span-1 md:col-span-1 bg-white rounded overflow-hidden shadow">
       <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300" style={{ cursor: 'default' }}>
 

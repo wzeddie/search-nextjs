@@ -1,12 +1,34 @@
 //结果页面
 'use client';
 //result.html汇总组件，用于接收参数，并将各个组件汇总
-import DomainTable from '@/app/ui/result/DomainTable';
-import TopLevelDomainQueryResults from '@/app/ui/result/TopLevelDomainQueryResults';
+import dynamic from 'next/dynamic';
+import Loading from './loading'; // 导入加载组件
+import { Suspense } from 'react';
+const DomainTable = React.lazy(() => import('@/app/ui/result/DomainTable'));
+const TopLevelDomainQueryResults = React.lazy(() => import('@/app/ui/result/TopLevelDomainQueryResults'));
+//const BackButton = React.lazy(() => import('@/app/ui/result/BackButton'));
+//const ResultTittle = React.lazy(() => import('@/app/ui/result/ResultTittle'));
+
+// const DomainTable = dynamic(() => import('@/app/ui/result/DomainTable'),{
+//   ssr: false,
+//   loading: () => <Loading />,
+// });//动态加载
+// const TopLevelDomainQueryResults = dynamic(() => import('@/app/ui/result/TopLevelDomainQueryResults'),{
+//   ssr: false,
+//   loading: () => <Loading />,
+// });//动态加载
+
+
+
+//import DomainTable from '@/app/ui/result/DomainTable';
+//import TopLevelDomainQueryResults from '@/app/ui/result/TopLevelDomainQueryResults';
 import BackButton from '@/app/ui/result/BackButton';
 import ResultTittle from '@/app/ui/result//ResultTittle';
 import React, { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { SkeletonTable } from '@/app/ui/result/skeletons-for-result';
+import { SkeletonTopLevelDomainQueryResults } from '@/app/ui/result/skeletons-for-result';
+import { SkeletonSkeletonBackButtonTable } from '@/app/ui/result/skeletons-for-result';
 
 
 export default function Page() {
@@ -17,7 +39,6 @@ export default function Page() {
   useEffect(() => {
     const id = searchParams.get('user_domain');
     console.log('result get uniqueId:', id)
-
     setUniqueId(id);
     // 调用 fetchData 函数以获取 user_domain 数据
     fetchData(id);
@@ -27,7 +48,7 @@ export default function Page() {
     try {
       const response = await fetch(`http://localhost:3000/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
       const data = await response.json();
-  
+
       // 打印Cache-Control头部，了解缓存行为
       const cacheControl = response.headers.get('Cache-Control');
       console.log('Cache-Control:', cacheControl);
@@ -62,14 +83,17 @@ export default function Page() {
     <div>
       <div className=" bg-gray-50 font-[sans-serif] my-4">
         <div className="max-w-7xl mx-auto">
-          <ResultTittle />
+            <ResultTittle />
           <section className="grid grid-cols-1 md:grid-cols-4 gap-1">
             {/* The domain name is:s {user_domain} */}
-
-            {user_domain && <DomainTable user_domain={user_domain} />}
-            <TopLevelDomainQueryResults />
+            <Suspense fallback={<SkeletonTable />}>
+              {user_domain && <DomainTable user_domain={user_domain} />}
+            </Suspense>
+            <Suspense fallback={<SkeletonTopLevelDomainQueryResults />}>
+              <TopLevelDomainQueryResults />
+            </Suspense>
           </section>
-          <BackButton />
+            <BackButton />
         </div>
       </div>
     </div>
