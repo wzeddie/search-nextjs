@@ -47,7 +47,7 @@ export default function Page() {
   const fetchData = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
-      const data = await response.json();
+      const data = await response.json();//从服务端下载查询的客户数据
 
       // 打印Cache-Control头部，了解缓存行为
       const cacheControl = response.headers.get('Cache-Control');

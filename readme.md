@@ -136,7 +136,11 @@ fechapi，什么时候相对URL，什么时候绝对URL。
 # v8.1.3 添加loading页面，
 解决需求，在结果页面等待时进行显示
 当你使用 Next.js 的 dynamic() 函数来动态导入组件时，loading.tsx 可以作为默认导出来指定一个组件，这个组件将在被动态导入的组件加载完成之前显示。
+完成添加网页骨架屏
+page页面可以打牌
 
+
+待解决，为什么tploading的数学比domain还要慢，因为page页面获取fatch数据后，直接下发给domaintable，但是TP还要自己重新取获取下载。下一步，应该是result/page页面，同步获取请求需求。
 待解决，为什么会多次请求。
 
 GET / 200 in 429ms
