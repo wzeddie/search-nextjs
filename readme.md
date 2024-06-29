@@ -130,6 +130,9 @@ fechapi，什么时候相对URL，什么时候绝对URL。
 学会全局变量
 学会组件的条件渲染，初始化null，然后进行条件渲染
             {user_domain && <DomainTable user_domain={user_domain} />}
+# v8.1.3，新增api，解决批量结果查询问题
+新增sent-piliang-domain，通过获取全局变量实现global.tempUser_domain获取用户输入的域名。
+
 
 待解决，为什么会多次请求。
 
@@ -142,8 +145,12 @@ sent-right-domain，get id: lxxetvql58rn4wtwg1t
  GET /api/sent-right-domain?user_domain=lxxetvql58rn4wtwg1t 200 in 9ms
 sent-right-domain，get id: lxxetvql58rn4wtwg1t
  GET /api/sent-right-domain?user_domain=lxxetvql58rn4wtwg1t 304 in 12ms
-
+解决了批量查询api问题
+d
+bug问题
 客户端还会打印4次。
+首页打开太慢
+批量查询结果a元素不能点击触发查询
 
 # 下一版本的改造内容：
 批量查询的结果，如何保存和传递问题

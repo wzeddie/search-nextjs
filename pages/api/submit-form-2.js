@@ -1,6 +1,8 @@
+//api功能发起远程api查询，获取数据后，保存到全局变量中
 const { getapi } = require('@/app/lib/get_domain_api');//导入第三方api查询模块
 const { addToMongoDB } = require('@/app/lib/addToMongoDB');//导入插入数据库模块
 global.tempStorage = global.tempStorage || {};
+global.tempUser_domain = global.tempUser_domain || {};
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'public, max-age=3600');//设置响应头服务端缓存机制。
@@ -8,6 +10,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { user_domain } = req.body;
     console.log('api-received domainname:', user_domain);
+    global.tempUser_domain=user_domain
     const domainParts = user_domain.split('.');
     const suffix = domainParts[2];
     const wwwname = domainParts[1];
@@ -20,8 +23,8 @@ export default async function handler(req, res) {
     //console.log('created the uniqueId ',uniqueId)
     const encodedId = encodeURIComponent(JSON.stringify(safeData));
     global.tempStorage[uniqueId]=safeData ;
-    console.log('saved the tempStorage[uniqueId] ',uniqueId )
-    res.writeHead(302, { Location: `http://localhost:3000/result?user_domain=${uniqueId}` });
+    console.log('saved the tempStorage[uniqueId] ',uniqueId,tempUser_domain )
+    res.writeHead(302, { Location: `http://localhost:3000/result?user_domain=${uniqueId}` });//告诉客户端重定向到结果页面
     res.end();
 
   } else {

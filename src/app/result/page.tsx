@@ -67,7 +67,7 @@ export default function Page() {
             {/* The domain name is:s {user_domain} */}
 
             {user_domain && <DomainTable user_domain={user_domain} />}
-            {/* <TopLevelDomainQueryResults user_domain={user_domain} /> */}
+            <TopLevelDomainQueryResults />
           </section>
           <BackButton />
         </div>

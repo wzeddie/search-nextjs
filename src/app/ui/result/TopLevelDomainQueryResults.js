@@ -1,18 +1,30 @@
 //批量查询结果组件
-//此为服务端组件，批量，异步获取
-//import React, { useState, useEffect } from 'react';//客户组件时需要加载
-const { piliang_getapi } = require('@/app/lib/piliang_get_domain_api');//导入第三方api查询模块
+import React, { useState, useEffect } from 'react';//客户组件时需要加载
 
+export default  function TopLevelDomainQueryResults() {//传入参数
+  //初始化时服务器发起获取批量查询结果
+  const [resultEntries, setresultEntries] = useState([]);//初始目标域名为空
 
-export default async function TopLevelDomainQueryResults({ user_domain }) {//传入参数
-  const domainParts = user_domain.split('.');
-  const suffix = domainParts[2];
-  const wwwname = domainParts[1];
-  //针对domainname发起批量查询，返回results
-  const results = await piliang_getapi(wwwname, suffix)
-  // Object.entries将results对象转换为键值对数组
-  const resultEntries = Object.entries(results);
-  return (
+  useEffect(() => {
+    console.log('TopLevelDomainQueryResults get uniqueId:')
+
+    // 调用 fetchData 函数以获取 user_domain 数据
+    fetchData();
+  }, []); // 空依赖数组意味着这个 effect 只在组件挂载时运行一次
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/sent-piliang-domain`);
+      const results = await response.json();
+      const resultEntries = Object.entries(results);
+      setresultEntries(resultEntries); // 使用 useState 设置 user_domain
+
+    } catch (error) {
+      console.error('Fetching data failed:', error);
+    }
+  };
+
+  return resultEntries.length > 0 &&(
     <div className="col-span-1 md:col-span-1 bg-white rounded overflow-hidden shadow">
       <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300" style={{ cursor: 'default' }}>
 
