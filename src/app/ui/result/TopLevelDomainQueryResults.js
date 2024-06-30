@@ -29,11 +29,11 @@ export default function TopLevelDomainQueryResults() {//传入参数
 
 
 
-  
+
   //点击链接，同步发起请求
   const onClick_a = async (event, key) => {
     event.preventDefault(); // 阻止默认的表单提交行为
-    const data = { user_domain: 'www.'+key };
+    const data = { user_domain: 'www.' + key };
     // 将 FormData 转换为 application/x-www-form-urlencoded 格式的字符串
     //const data = Object.fromEntries(data1.entries());
     console.log(data)
@@ -53,9 +53,9 @@ export default function TopLevelDomainQueryResults() {//传入参数
   //条件渲染，当数组有结果时才返回渲染组件
   return resultEntries != null && (
     <div className="col-span-1 md:col-span-1 bg-white rounded overflow-hidden shadow">
-       <form ref={TSformRef} id="myTSForm" >
-          <input type="hidden" name="user_domain" /> {/* 隐藏输入框，用于存储被点击的域名 */}
-          </form>
+      <form ref={TSformRef} id="myTSForm" >
+        <input type="hidden" name="user_domain" /> {/* 隐藏输入框，用于存储被点击的域名 */}
+      </form>
 
       <div className="bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative top-0 hover:-top-2 transition-all duration-300" style={{ cursor: 'default' }}>
 
@@ -65,21 +65,26 @@ export default function TopLevelDomainQueryResults() {//传入参数
           </div>
 
           <div style={{ padding: '2px', display: 'flex', flexDirection: 'column' }}>
-            {/* 遍历键值对数组并展示每个结果 */}
-            {resultEntries.map(([key, value], index) => (
-              <div key={index} style={{ padding: '15px' }}>
-                <a href=''
-                  style={{ textDecoration: 'none' }}
-                  onClick={(event) => onClick_a(event, key)}
-                >
-                  {key}
-                </a> - {value}
-              </div>
-            ))}
-          </div>
+              <ul class="mt-2">
+                {/* 遍历键值对数组并展示每个结果 */}
+                {resultEntries.map(([key, value], index) => (
+                  <li>
+                    <div key={index}                        class="text-black hover:text-blue-600 text-[15px] block hover:bg-blue-50 rounded px-4 py-2.5 transition-all"
+style={{ padding: '15px' }}>
+                      <a href=''
+                        style={{ textDecoration: 'none' }}
+                        onClick={(event) => onClick_a(event, key)}
+                      >
+                        {key}
+                      </a> - {value}
+                  </div>
+                  </li>
+                ))}
+            </ul>
         </div>
       </div>
     </div>
+    </div >
 
   );
 };
