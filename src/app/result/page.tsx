@@ -42,7 +42,7 @@ export default function Page() {
     setUniqueId(id);
     // 调用 fetchData 函数以获取 user_domain 数据
     fetchData(id);
-  }, []); // 空依赖数组意味着这个 effect 只在组件挂载时运行一次
+  }, [searchParams]); // 当参数发生变化时，重新进行获取，并渲染
 
   const fetchData = async (id) => {
     try {

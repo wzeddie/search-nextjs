@@ -39,7 +39,7 @@ export default function RecentlySearched({ recentDomains }) { // 组件接收 pr
           {recentDomains.map((domain, index) => (
               <a
               key={index}
-              href="#"
+              href=""
                 className="underline"
                 onClick={(event) => onClick_a(event, domain)}
                 style={{

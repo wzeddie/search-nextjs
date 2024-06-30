@@ -6,6 +6,10 @@ export default  function DomainTable({ user_domain }) {//传入参数
   const [safeData, setsafeData] = useState(user_domain);//初始目标域名为空
 
   console.log('DomainTable get the user_domain is:',user_domain)
+  useEffect(() => {
+    setsafeData(user_domain);
+  }, [user_domain]); 
+
   //const safeData = user_domain
   //console.log('DomainTable:',user_domain)
   //const safeData=JSON.parse(user_domain)//接收数据，并转换为json格式
