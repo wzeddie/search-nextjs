@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     const wwwname = domainParts[1];
     const safeData = await getapi(wwwname, suffix);//向第三方发起查询数据
     //这里要增加判断sefedata是否有有效
-    //await addToMongoDB(safeData)//将得到的数据添加到数据库
+    await addToMongoDB(safeData)//将得到的数据添加到数据库
     //res.status(200).json( safeData);//下发数据JSON.stringify(
     //生成唯一标识
     const uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
