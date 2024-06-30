@@ -140,6 +140,10 @@ fechapi，什么时候相对URL，什么时候绝对URL。
 page页面可以打牌
 
 
+# v8.1.4下一步，修复批量链接a元素支持点击
+给a元素修改为导航，同时给a元素添加事件，点击后自动发起form的api，重新重定到result，从而实现快速查询的目的
+
+
 待解决，为什么tploading的数学比domain还要慢，因为page页面获取fatch数据后，直接下发给domaintable，但是TP还要自己重新取获取下载。下一步，应该是result/page页面，同步获取请求需求。
 待解决，为什么会多次请求。
 
