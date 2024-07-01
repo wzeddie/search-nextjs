@@ -34,9 +34,23 @@ const DomainSearchForm = () => {
     if (response.redirected) {
       router.push(response.url);//接收服务器重定向
     }
-   
-
   };
+
+  const DeleteDataButton =async  (event) => {
+    event.preventDefault(); // 如果这是一个按钮，可能需要阻止默认行为
+
+    const response=await fetch('/api/delete-treedata', {//对应后台api接口
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',//设置为服务端可以方便获取的接收格式
+      },
+      body: JSON.stringify({}),
+    });
+    if (response.redirected) {
+      router.push(response.url);//接收服务器重定向
+    }
+  };
+
   const handleInputClick = () => {
     setDomainName(''); // 触发光标事件，清空输入框的值
   };
@@ -86,6 +100,12 @@ const DomainSearchForm = () => {
             id="searchdomain" disabled={!isSubmittable} style={{ opacity: isSubmittable ? 1 : 0.5 }}
           >Submit</button>
         </form>
+        <div className="mx-auto w-20 text-center">
+                <button type="button"  onClick={DeleteDataButton} className="!mt-8 w-full px-4 py-2.5 mx-auto block text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                    id="delete" disabled={!isSubmittable} style={{ opacity: isSubmittable ? 1 : 0.5 }}
+                >Delete</button>
+
+        </div>
       </div>
     </div>
   );

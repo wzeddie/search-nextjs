@@ -6,6 +6,7 @@
 //import ClientWrapper from '@/app/ui/home/ClientWrapper'; // 导入新的客户端组件
 import dynamic from 'next/dynamic';
 import Loading from './loading'; // 导入加载组件
+import DeleteDataButton from '@/app/ui/home/DeleteDataButton';
 
 const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), {
   ssr: false,
@@ -21,7 +22,8 @@ export default async function Page() {
       {/* <DomainSearchForm /> */}
       {/* <RecentlySearched recentDomains={recentDomains}/> */}
       <ClientWrapper recentDomains={recentDomains} /> 
-      {/* 使用新的客户端组件 */}
+      {/* 删除最近的记录按钮 */}
+      {/* <DeleteDataButton  /> */}
 
     </section>
 
