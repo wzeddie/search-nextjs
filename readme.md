@@ -216,3 +216,12 @@ router.replace("/some-target");不添加历史记录，无法通过点击浏览�
 如何在服务端组件控制客户端导航链接
  import { redirect } from 'next/navigation'
     redirect('/login')
+
+mongodb操作
+// Select the database to use.
+use('mydatabase');
+
+// Insert a few documents into the sales collection.
+//db.getCollection('searchdomain').deleteMany({});
+
+db.getCollection('searchdomain').find();

@@ -105,11 +105,11 @@ export default function RecentlySearched({ recentDomains }) { // 组件接收 pr
           id="delete" disabled={!isSubmittable} style={{ opacity: isSubmittable ? 1 : 0.5 }}
         >Delete</button>
       </div>
-      <div id="customModal" class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center hidden">
-        <div class="bg-white p-6 rounded shadow-lg">
-          <h2 class="text-xl font-bold">操作成功</h2>
-          <p class="mt-2">删除成功！</p>
-          <button id="closeModalBtn"  onClick={closeModal} class="mt-4 bg-blue-500 text-white py-2 px-4 rounded">关闭</button>
+      <div id="customModal" className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center hidden">
+        <div className="bg-white p-6 rounded shadow-lg">
+          <h2 className="text-xl font-bold">操作提醒</h2>
+          <p className="mt-2">删除成功！</p>
+          <button id="closeModalBtn"  onClick={closeModal} className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">关闭</button>
         </div>
       </div>
     </div>
