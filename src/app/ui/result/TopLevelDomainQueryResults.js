@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from 'react';//客户组件时需�
 import { useRouter } from 'next/navigation';
 
 export default function TopLevelDomainQueryResults() {//传入参数
+  const [isLoading, setIsLoading] = useState(true);//初始化禁用按钮，可以点击
+
   //初始化时服务器发起获取批量查询结果
   const [resultEntries, setresultEntries] = useState();//初始目标域名为空
   const TSformRef = useRef(null); // 使用 useRef 来引用表单，在 form 中，将表单的引用赋值给 formRef
@@ -32,6 +34,7 @@ export default function TopLevelDomainQueryResults() {//传入参数
 
   //点击链接，同步发起请求
   const onClick_a = async (event, key) => {
+    setIsLoading(false); // 禁用按钮，避免重复点击
     event.preventDefault(); // 阻止默认的表单提交行为
     const data = { user_domain: 'www.' + key };
     // 将 FormData 转换为 application/x-www-form-urlencoded 格式的字符串
@@ -47,7 +50,7 @@ export default function TopLevelDomainQueryResults() {//传入参数
     if (response.redirected) {
       router.push(response.url);//接收服务器重定向
     }
-
+    setIsLoading(true);//重启禁用按钮
   };
 
   //条件渲染，当数组有结果时才返回渲染组件
@@ -65,25 +68,35 @@ export default function TopLevelDomainQueryResults() {//传入参数
           </div>
 
           <div style={{ padding: '2px', display: 'flex', flexDirection: 'column' }}>
-              <ul class="mt-2">
-                {/* 遍历键值对数组并展示每个结果 */}
-                {resultEntries.map(([key, value], index) => (
-                  <li>
-                    <div key={index}                        class="text-black hover:text-blue-600 text-[15px] block hover:bg-blue-50 rounded px-4 py-2.5 transition-all"
-style={{ padding: '15px' }}>
+            <ul className="mt-2">
+              {/* 遍历键值对数组并展示每个结果 */}
+              {resultEntries.map(([key, value], index) => {
+                const uniqueKey = typeof key === 'string' && key.trim() ? key.trim() : `item-${index}`;
+                return (
+                  <li key={uniqueKey}>
+                    <div className="text-black hover:text-blue-600 text-[15px] block hover:bg-blue-50 rounded px-4 py-2.5 transition-all"
+                      style={{ padding: '15px' }}>
                       <a href=''
-                        style={{ textDecoration: 'none' }}
+                        style={{
+                          textDecoration: 'none',
+                          margin: '0 10px',
+                          opacity: isLoading ? 1 : 0.5, // 当不可点击时，降低透明度
+                          color: isLoading ? 'black' : 'gray', // 设置不可点击时的文字颜色
+                          pointerEvents: isLoading ? 'auto' : 'none', // 设置不可点击时，禁用鼠标事件
+                        }}
                         onClick={(event) => onClick_a(event, key)}
+
                       >
                         {key}
                       </a> - {value}
-                  </div>
+                    </div>
                   </li>
-                ))}
+                );
+              })}
             </ul>
+          </div>
         </div>
       </div>
-    </div>
     </div >
 
   );

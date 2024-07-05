@@ -3,6 +3,7 @@ import { Metadata } from 'next';//网页元数据
 //import { inter } from '@/app/ui/fonts'; 导入google字体
 import Header from './ui/header.js';//页眉
 import Footer from './ui/footer.js';//页脚
+//标准格式，children对应page页面默认组件
 export const metadata: Metadata = {
   title: {
     template: '%s | Search Domain',
@@ -19,15 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <main>
-      <Header />
-        {children}
-        <Footer />
+        <main>
+          <Header />
+          {children}
+          <Footer />
         </main>
-        </body>
+      </body>
     </html>
   )
 }
 
- 
+
 

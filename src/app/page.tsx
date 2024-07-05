@@ -1,12 +1,12 @@
 //入口页面
-//都没有调用通过 getServerSideProps 和 getStaticProps。为什么也能实现获取数据返回给组件。
+//next13版本之前，要通过getServerSideProps 和 getStaticProps。来实现获取数据返回给组件。
 //nextJS的13版本之后的特性，app 目录中的页面默认是 React 服务器组件。服务器组件可以直接进行服务器端数据获取操作，这使得代码更加简洁。
+
 //import DomainSearchForm from '@/app/ui/home/DomainSearchForm';//@项目的根目录，需要在ts配置文件中提前配置好
 //import RecentlySearched from '@/app/ui/home/RecentlySearched';
 //import ClientWrapper from '@/app/ui/home/ClientWrapper'; // 导入新的客户端组件
 import dynamic from 'next/dynamic';
 import Loading from './loading'; // 导入加载组件
-import DeleteDataButton from '@/app/ui/home/DeleteDataButton';
 
 const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), {
   ssr: false,
@@ -22,8 +22,6 @@ export default async function Page() {
       {/* <DomainSearchForm /> */}
       {/* <RecentlySearched recentDomains={recentDomains}/> */}
       <ClientWrapper recentDomains={recentDomains} /> 
-      {/* 删除最近的记录按钮 */}
-      {/* <DeleteDataButton  /> */}
 
     </section>
 
