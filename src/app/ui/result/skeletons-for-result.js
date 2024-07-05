@@ -1,5 +1,5 @@
 // SkeletonTable.js-result页面的表格信息骨架屏
-// SkeletonComponent.js
+// SkeletonComponent.js，总的鱼骨架
 export default function SkeletonComponent() {
     return (
         <div>
@@ -16,6 +16,7 @@ export default function SkeletonComponent() {
         </div>
     );
 }
+//标题骨架，不启动，因为标题组件是直接return，没有启动resct渲染方式
 export function ResultTittle() {
     return (
         <div className="bg-gray-50 text-center m-4">
@@ -28,7 +29,7 @@ export function ResultTittle() {
         </div>
     );
 }
-
+//批量查询详情页面的鱼骨架
 export function SkeletonTopLevelDomainQueryResults() {
     return (
         <div className="col-span-1 md:col-span-1 bg-white rounded overflow-hidden shadow">
@@ -50,8 +51,9 @@ export function SkeletonTopLevelDomainQueryResults() {
         </div>
     );
 }
+
 // SkeletonTable.js
-// SkeletonTable.js
+// 域名详情组件的鱼骨架子。
 export function SkeletonTable() {
     return (
         <div className="col-span-1 md:col-span-3 bg-white rounded overflow-hidden shadow">
@@ -95,7 +97,7 @@ export function SkeletonTable() {
 
     );
 }
-
+//返回键的鱼骨架
 export function SkeletonBackButton() {
     return (
         <div style={{ textAlign: 'center' }}>

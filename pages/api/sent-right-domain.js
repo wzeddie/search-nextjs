@@ -1,5 +1,5 @@
 //global.tempStorage[user_domain];node.js直接获取全局变量
-//给结果页提供下发全局变量的接口
+//给结果页提供下发全局变量域名详情的api接口
 //tempStorage[user_domain]包含域名详细信息
 export default async function getDataHandler(req, res) {
     res.setHeader('Cache-Control', 'public, max-age=3600');//设置响应头服务端缓存机制。

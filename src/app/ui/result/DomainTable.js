@@ -1,36 +1,13 @@
 //域名结果详情组件
 //该组件未调用数据库插入，所以默认也是客户端组件。
 import React, { useState, useEffect } from 'react';//客户组件时需要加载
-
 export default  function DomainTable({ user_domain }) {//传入参数
   const [safeData, setsafeData] = useState(user_domain);//初始目标域名为空
-
   console.log('DomainTable get the user_domain is:',user_domain)
   useEffect(() => {
-    setsafeData(user_domain);
+    setsafeData(user_domain);//根据传入值进行渲染
   }, [user_domain]); 
 
-  //const safeData = user_domain
-  //console.log('DomainTable:',user_domain)
-  //const safeData=JSON.parse(user_domain)//接收数据，并转换为json格式
-
-  //console.log('DomainTable safeDatas:',safeData.domain)
-
-  // try {
-
-  //   const domainParts = user_domain.split('.');
-  //   if (domainParts.length > 2) {
-  //     const suffix = domainParts[2];
-  //     const wwwname = domainParts[1];
-  //     safeData = await getapi(wwwname, suffix);//发起查询，（问题：与api重复发起，这个组件应该修改为接收props，然后进行渲染即可）
-  //     //console.log(safeData)
-  //   } else {
-  //     console.log('Received wrong domain ');//输入的查询域名格式不符
-  //   }
-  // } catch (error) {
-  //   console.error('An error occurred during API call or database operation:', error);
-  //   // 处理错误，例如返回错误响应或通知用户
-  // }
 
   return (
     <div className="col-span-1 md:col-span-3 bg-white rounded overflow-hidden shadow">
@@ -71,8 +48,6 @@ export default  function DomainTable({ user_domain }) {//传入参数
         </table>
       </div>
     </div>
-
-
   );
 };
 

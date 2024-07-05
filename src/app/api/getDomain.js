@@ -1,4 +1,4 @@
-//app/api/getdomain，用于单个页面调用
+//app/api/getdomain，用于单个页面调用,未启用
 const { getapi } = require('@/app/lib/connectToDB');//导入第三方api查询模块
 const { addToMongoDB } = require('@/app/lib/addToMongoDB');
 

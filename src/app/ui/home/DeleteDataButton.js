@@ -1,4 +1,5 @@
 
+//这个组件目前暂时用不到，原来准备单独做成一个删除按钮，现在已经合并到RS组件中，统一发起到删除api接口了。
 import { deleteThreeData } from '@/app/lib/deleteThreeData';
 
 export default async function DeleteDataButton() {

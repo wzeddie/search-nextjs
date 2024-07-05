@@ -4,32 +4,27 @@
 //服务端接收请求发起查询，如果查询正常，则执行插入数据库，并下发数据。
 //客户端，fetch接收数据后，跳转结果页面并传递参数。
 //结果页，next.js路由组件接收参数并渲染。
-// 'use client'
-// import { useRouter } from 'next/router';
+
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 const DomainSearchForm = () => {
-  // 使用严格模式来帮助捕获引用错误
-  //"use strict";开启这个模式会渲染两次默认
   const router = useRouter();
-
   const [domainName, setDomainName] = useState('');//初始目标域名为空
   const [isSubmittable, setIsSubmittable] = useState(true); // 控制按钮可点击状态
-  // 处理表单提交的函数
+  // 处理表单提交的事件函数
   const handleSubmit =async  (event) => {
-
     event.preventDefault();
     setIsSubmittable(false);    // 设置按钮为不可再提交
-    const form = event.target;//获取表单元素
+    const form = event.target;//获取表单input的元素
     const formData = new FormData(form);
     // 将 FormData 转换为 application/x-www-form-urlencoded 格式的字符串
     const data = Object.fromEntries(formData.entries());
-    const response=await fetch('/api/submit-form-2', {//对应后台api接口
+    const response=await fetch('/api/submit-form-2', {//对应后台api接口，表单查询处理请求
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',//设置为服务端可以方便获取的接收格式
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data),//发送服务端的input值
     });
     if (response.redirected) {
       router.push(response.url);//接收服务器重定向
@@ -44,9 +39,6 @@ const DomainSearchForm = () => {
   const handleInputChange = (event) => {
     setDomainName(event.target.value); // 更新输入框的值
   };
-
-  // 判断是否在客户端渲染
-  if (typeof window === 'undefined') return null;
 
 
   return (

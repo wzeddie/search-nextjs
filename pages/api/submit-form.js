@@ -1,4 +1,4 @@
-// pages/api/submit-form.js
+// pages/api/submit-form.js，原生表单处理，已启用
 //api接口用于响应客户端发起的表单处理请求，input的name为name
 //addToMongoDB插入数据库的操作必须要在服务端运行，api下的接口基本上为服务端。
 //为什么不能在组件中插入数据库？提示dns报错——是因为客户端组件不运行直接操作数据库，只能是服务端的组件页面，比如page.js等

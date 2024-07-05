@@ -1,34 +1,16 @@
 //结果页面
 'use client';
 //result.html汇总组件，用于接收参数，并将各个组件汇总
-import dynamic from 'next/dynamic';
-import Loading from './loading'; // 导入加载组件
-import { Suspense } from 'react';
+
+import { Suspense } from 'react';//异步加载，搭配react.lazy使用，在loading时，先加载鱼骨架组件
 const DomainTable = React.lazy(() => import('@/app/ui/result/DomainTable'));
 const TopLevelDomainQueryResults = React.lazy(() => import('@/app/ui/result/TopLevelDomainQueryResults'));
-//const BackButton = React.lazy(() => import('@/app/ui/result/BackButton'));
-//const ResultTittle = React.lazy(() => import('@/app/ui/result/ResultTittle'));
-
-// const DomainTable = dynamic(() => import('@/app/ui/result/DomainTable'),{
-//   ssr: false,
-//   loading: () => <Loading />,
-// });//动态加载
-// const TopLevelDomainQueryResults = dynamic(() => import('@/app/ui/result/TopLevelDomainQueryResults'),{
-//   ssr: false,
-//   loading: () => <Loading />,
-// });//动态加载
-
-
-
-//import DomainTable from '@/app/ui/result/DomainTable';
-//import TopLevelDomainQueryResults from '@/app/ui/result/TopLevelDomainQueryResults';
 import BackButton from '@/app/ui/result/BackButton';
 import ResultTittle from '@/app/ui/result//ResultTittle';
 import React, { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { SkeletonTable } from '@/app/ui/result/skeletons-for-result';
 import { SkeletonTopLevelDomainQueryResults } from '@/app/ui/result/skeletons-for-result';
-import { SkeletonSkeletonBackButtonTable } from '@/app/ui/result/skeletons-for-result';
 
 
 export default function Page() {
@@ -39,7 +21,7 @@ export default function Page() {
   useEffect(() => {
     const id = searchParams.get('user_domain');
     console.log('result get uniqueId:', id)
-    setUniqueId(id);
+    setUniqueId(id);//初始化uniqueId
     // 调用 fetchData 函数以获取 user_domain 数据
     fetchData(id);
   }, [searchParams]); // 当参数发生变化时，重新进行获取，并渲染
@@ -65,19 +47,6 @@ export default function Page() {
       console.error('Fetching data failed:', error);
     }
   };
-
-  //以下代码没有用到钩子，导致数据变更后，无法及时获取，并更新组件。
-  // const searchParams = useSearchParams();
-  // const uniqueId = searchParams.get('user_domain');//在路由中获取参数
-  // console.log('result get uniqueId:', uniqueId)
-  // var user_domain = null
-  // const fetchData = async () => {
-  //   const response = await fetch(`http://localhost:3000/api/sent-right-domain?user_domain=${uniqueId}`);//不能传递全局变量
-  //   user_domain = await response.json();
-  //   console.log('result get domainname:', user_domain)
-
-  // }
-  // fetchData()
 
   return (
     <div>

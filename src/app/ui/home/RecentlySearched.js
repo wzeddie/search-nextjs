@@ -1,5 +1,4 @@
 "use client"; // 声明这是一个客户端组件
-import Link from 'next/link';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -11,17 +10,14 @@ export default function RecentlySearched({ recentDomains }) { // 组件接收 pr
   const [recentTreedata, setrecentDomains] = useState(recentDomains); // 控制链接可点击状态
 
   useEffect(() => {
-    setrecentDomains(recentDomains)
+    setrecentDomains(recentDomains)//初始化recentTreedata
   }, [recentDomains]);
 
-  //获取点击事件后，直接发起fech api请求
+  //获取点击事件后，直接发起fech api请求，这个方法其实同domainsearchform的表单发起方法
   const onClick_a = async (event, domain) => {
     event.preventDefault(); // 阻止默认的表单提交行为
     setIsClickable(false); // 设置链接为不可点击状态
-    const data = { user_domain: domain };
-    // 将 FormData 转换为 application/x-www-form-urlencoded 格式的字符串
-    //const data = Object.fromEntries(data1.entries());
-    console.log(data)
+    const data = { user_domain: domain };//设置data值为对象类型
     const response = await fetch('/api/submit-form-2', {//对应后台api接口
       method: 'POST',
       headers: {
@@ -39,29 +35,29 @@ export default function RecentlySearched({ recentDomains }) { // 组件接收 pr
   const DeleteDataButton = async (event) => {
     event.preventDefault(); // 如果这是一个按钮，可能需要阻止默认行为
     setIsSubmittable(false)
-    const response = await fetch('/api/delete-treedata', {//对应后台api接口
+    const response = await fetch('/api/delete-treedata', {//对应后台api删除接口
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',//设置为服务端可以方便获取的接收格式
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({}),//删除时不需要传递具体值
     });
     if (response.redirected) {
       router.push(response.url);//接收服务器重定向
     }
     const data = await response.json();
     console.log('delete success and received:', data); // 打印响应数据到控制台
-    if (Array.isArray(data) && data.length > 0) {
+    if (Array.isArray(data) && data.length > 0) {//如果接收到非空的删除提醒内容，则说明删除成功
       showModal();
-      setrecentDomains(data)
+      setrecentDomains(data)//再次渲染组件参数recentTreedata
 
     } else {
-      // 如果data不是一个非空数组，显示删除失败的提示
+      // 如果data不是一个非空数组，显示删除失败的提示，比如数据库记录删除完了后
       alert('删除失败，请稍后再试。');
     }
   };
 
-  // 显示模态框的函数
+  // 显示模态框的函数tailwind
   function showModal() {
     const modal = document.getElementById('customModal');
     modal.classList.remove('hidden');

@@ -3,23 +3,22 @@ import React, { useState, useEffect, useRef } from 'react';//客户组件时需�
 import { useRouter } from 'next/navigation';
 
 export default function TopLevelDomainQueryResults() {//传入参数
-  const [isLoading, setIsLoading] = useState(true);//初始化禁用按钮，可以点击
+  const [isLoading, setIsLoading] = useState(true);//初始化是否已点击
 
   //初始化时服务器发起获取批量查询结果
-  const [resultEntries, setresultEntries] = useState();//初始目标域名为空
+  const [resultEntries, setresultEntries] = useState();//批量结果字段
   const TSformRef = useRef(null); // 使用 useRef 来引用表单，在 form 中，将表单的引用赋值给 formRef
   const router = useRouter();
 
   useEffect(() => {
-    console.log('TopLevelDomainQueryResults get uniqueId:')
-    //setresultEntries([])
+
     // 调用 fetchData 函数以获取 user_domain 数据
     fetchData();
   }, []); // 空依赖数组意味着这个 effect 只在组件挂载时运行一次
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/sent-piliang-domain`);
+      const response = await fetch(`http://localhost:3000/api/sent-piliang-domain`);//发起请求数据
       const results = await response.json();
       const resultEntries = Object.entries(results);
       setresultEntries(resultEntries); // 使用 useState 设置 user_domain
@@ -32,13 +31,12 @@ export default function TopLevelDomainQueryResults() {//传入参数
 
 
 
-  //点击链接，同步发起请求
+  //点击链接，同步发起查询对应的域名请求
   const onClick_a = async (event, key) => {
     setIsLoading(false); // 禁用按钮，避免重复点击
     event.preventDefault(); // 阻止默认的表单提交行为
     const data = { user_domain: 'www.' + key };
-    // 将 FormData 转换为 application/x-www-form-urlencoded 格式的字符串
-    //const data = Object.fromEntries(data1.entries());
+
     console.log(data)
     const response = await fetch('/api/submit-form-2', {//对应后台api接口
       method: 'POST',

@@ -3,13 +3,9 @@
 import React, { useState, useEffect } from 'react';//客户组件时需要加载
 
 const BackButton = () => {
-  const [ButtonName, setButtonName] = useState('Loading');//初始目标域名为空
+  const [ButtonName, setButtonName] = useState('Loading');//初始时显示为loading
   React.useEffect(() => {
-    // simulateDelay(2000).then(() => {
-    //   // 模拟完成
-    // });
     setButtonName('Back ')
-
 }, []);
   return (
     <div style={{ textAlign: 'center' }}>
