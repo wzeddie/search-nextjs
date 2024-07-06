@@ -168,9 +168,60 @@ bug问题
 
 # 标记版本V8.2.0
 
-# 下一版本的改造内容：
+# 运行npm run bulid进行部署
+1、这个npm run bulid构建过程会执行以下步骤：
 
-运行npm run bulid,next.JS部署生产时会校验各个变量和参数的类型。——这也是ts与js的主要区别。编译的时候会先校验类型，js不会校验。
+编译源代码。
+执行类型检查（如果使用 TypeScript）。next.JS部署生产时会校验各个变量和参数的类型。——这也是ts与js的主要区别。编译的时候会先校验类型，js不会校验。
+优化代码，包括代码分割、压缩等。
+生成静态资源，如 HTML、CSS 和 JavaScript 文件。
+准备服务端渲染所需的数据和代码。
+
+2、成功build后，会显示：
+Creating an optimized production build ...
+这表示 Next.js 正在创建一个优化的生产环境构建。
+Compiled successfully
+编译成功，没有编译错误。
+Linting and checking validity of types
+代码已经通过 linting（代码风格检查）和类型验证（TypeScript 类型检查）。
+Collecting page data
+Next.js 正在收集页面数据，这通常用于动态路由或需要获取数据的页面。
+Generating static pages
+Next.js 生成了静态页面。静态页面是预渲染的，可以提高加载速度和SEO（搜索引擎优化）。
+Collecting build traces
+收集构建跟踪信息，用于分析和优化构建过程。
+Finalizing page optimization
+完成页面优化，Next.js 可能进行了代码分割、压缩等优化措施。
+Route (app)
+这是 Next.js 14 引入的新概念，用于定义应用的路由。app 目录下的文件可以覆盖默认的行为。
+Size: 路由的静态生成大小。
+First Load JS: 页面首次加载时需要执行的 JavaScript 代码大小。
+Route (pages)
+这是传统的 Next.js 页面路由。pages 目录下的每个文件都对应一个路由。
+Static vs. Dynamic Routes
+○ (Static): 表示该路由是静态的，已经被预渲染为静态内容。这意味着页面在构建时生成，并且可以在没有服务器的情况下提供服务，适合内容不经常变化的页面。
+ƒ (Dynamic): 表示该路由是动态的，会根据请求在服务器上渲染。这适用于需要根据用户输入或数据库内容动态生成的页面。
+Shared chunks
+表示多个页面共享的 JavaScript 代码块。Next.js 会尝试重用代码以减少总体加载的 JavaScript 大小。
+chunks/...
+构建过程中生成的 JavaScript 文件，每个文件都有一个唯一的哈希值，用于缓存和版本控制。
+First Load JS shared by all
+所有页面首次加载时共享的 JavaScript 代码大小。
+
+3、在执行 npm run build 命令后，会在 .next 目录下生成多个文件夹和文件，每个都有特定的功能。
+sharedLibs:包含共享库的代码，这些库被多个页面或组件共享，以减少加载时间和重复编译。
+server:包含服务器端渲染所需的文件。如果你使用了 Next.js 的服务器端渲染功能，这部分代码会在服务器上执行。
+static:包含静态文件，如图片、字体等。这些文件在构建过程中被复制到 .next/static 目录下。
+chunks:包含 JavaScript 代码块（chunks）。这些代码块是经过代码分割和压缩的，用于按需加载和缓存优化。
+build-manifest.json:构建清单文件，记录了页面和它们的依赖关系，以及页面的静态资源。
+preload-scripts:包含预加载脚本，这些脚本用于在页面加载前预先加载资源，以提高页面加载速度。
+reports:包含构建报告，如性能分析报告，可以帮助你了解应用的加载时间和优化点。
+cache:包含缓存数据，Next.js 使用这个缓存来提高构建速度和性能。
+dist:如果使用了 next export 命令，这个目录将包含导出的静态网站文件。
+tsconfig:如果项目使用了 TypeScript，这个目录可能包含 TypeScript 的配置文件，用于构建过程中的类型检查。
+
+
+# 部署到vercel
 在线github登录vercel，直接import看结果
 
 上传生成环境vercel
@@ -182,7 +233,7 @@ bug问题
 
 
 
-
+下一版本的改造内容：
 
 # 空
 解决pages/api和结果页，重复发起请求问题，一次domain，两次查询
