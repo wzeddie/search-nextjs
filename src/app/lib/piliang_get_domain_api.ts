@@ -1,9 +1,10 @@
 //发起批量查询
 const { getapi } = require('@/app/lib/get_domain_api'); // 导入第三方api查询模块
 
-export async function piliang_getapi(wwwname, suffix) {
+export async function piliang_getapi(wwwname:string, suffix:string) {
     const suffixs = ['com', 'net', 'org', 'me', 'xyz', 'info', 'io', 'co', 'ai', 'biz', 'us', 'etc'];
-    let piliang_yuming_able = {};
+    // Record 类型可以用来创建具有特定键和值类型的字典。
+    let piliang_yuming_able: Record<string, any> = {};
     let promises = []; // 用于收集所有 Promise 的数组
 
     for (let i = 0; i < suffixs.length; i++) {
@@ -11,7 +12,7 @@ export async function piliang_getapi(wwwname, suffix) {
         const domain = `${wwwname}.${suffixs[i]}`;
         promises.push(//添加到数组 promises 
             getapi(wwwname, suffixs[i])
-                .then(singleData => {//.then语法，直接根据getapi返回的结果进行判断
+                .then((singleData :any)=> {//.then语法，直接根据getapi返回的结果进行判断
                     // 假设 singleData 是一个对象，我们可以直接修改 piliang_yuming_able
                     piliang_yuming_able[domain] = singleData.available
                         ? 'unregistered'
@@ -19,7 +20,7 @@ export async function piliang_getapi(wwwname, suffix) {
                     // 显式返回 singleData 对象
                     return singleData.domain; // 确保返回 Promise 结果
                 })
-                .catch(error => {
+                .catch((error:any) => {
                     console.error(`查询 ${domain} 时出错：`, error);
                     piliang_yuming_able[domain] = 'error';
                     // 在这里抛出错误，让 Promise.all 能够捕获它

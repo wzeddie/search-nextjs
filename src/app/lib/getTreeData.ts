@@ -9,13 +9,13 @@ export async function getTreeData(
         const database = client.db('mydatabase'); // 使用MongoClient实例获取数据库 
         const collection = database.collection('searchdomain');
         const recentDocuments = await collection.find().sort({ _id: -1 }).limit(3).toArray();
-        const extractedData = recentDocuments.map(doc => ({
+        const extractedData = recentDocuments.map((doc:any) => ({
             _id: doc._id,
             name: doc.name,
             suffix: doc.suffix
         }));
        // await client.close(); //关闭数据库
-        const initialDomains = extractedData.map(domain => `www.${domain.name}.${domain.suffix}`);//转换为完整的网址形式
+        const initialDomains = extractedData.map((domain:any) => `www.${domain.name}.${domain.suffix}`);//转换为完整的网址形式
 
         return initialDomains//返回数组类型的三条记录
 

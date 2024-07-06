@@ -61,7 +61,7 @@ const DomainSearchForm = () => {
                 </svg>
               </div>
 
-              <input type='text' placeholder='Enter name'
+              <input type='text' 
                 className="text-sm text-black rounded bg-white w-full h-full  outline-none px-4"
                 id="domainname"
                 name="user_domain"

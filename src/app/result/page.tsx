@@ -14,19 +14,25 @@ import { SkeletonTopLevelDomainQueryResults } from '@/app/ui/result/skeletons-fo
 
 
 export default function Page() {
-  const [uniqueId, setUniqueId] = useState(null);
+  const [uniqueId, setUniqueId] = useState<string | null>(null)//允许接收string和null类型
   const [user_domain, setUserDomain] = useState(null);
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const id = searchParams.get('user_domain');
-    console.log('result get uniqueId:', id)
-    setUniqueId(id);//初始化uniqueId
-    // 调用 fetchData 函数以获取 user_domain 数据
-    fetchData(id);
+    if (searchParams) {
+      const id = searchParams.get('user_domain')
+      if (id !== null) {
+        console.log('result get uniqueId:', id)
+        setUniqueId(id);//初始化uniqueId
+        // 调用 fetchData 函数以获取 user_domain 数据
+        fetchData(id);
+      }
+    } else {
+      console.error('No search parameters found');
+    }
   }, [searchParams]); // 当参数发生变化时，重新进行获取，并渲染
 
-  const fetchData = async (id) => {
+  const fetchData = async (id:any) => {
     try {
       const response = await fetch(`http://localhost:3000/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
       const data = await response.json();//从服务端下载查询的客户数据
@@ -52,7 +58,7 @@ export default function Page() {
     <div>
       <div className=" bg-gray-50 font-[sans-serif] my-4">
         <div className="max-w-7xl mx-auto">
-            <ResultTittle />
+          <ResultTittle />
           <section className="grid grid-cols-1 md:grid-cols-4 gap-1">
             {/* The domain name is:s {user_domain} */}
             <Suspense fallback={<SkeletonTable />}>
@@ -62,7 +68,7 @@ export default function Page() {
               <TopLevelDomainQueryResults />
             </Suspense>
           </section>
-            <BackButton />
+          <BackButton />
         </div>
       </div>
     </div>

@@ -170,6 +170,9 @@ bug问题
 
 # 下一版本的改造内容：
 
+运行npm run bulid,next.JS部署生产时会校验各个变量和参数的类型。——这也是ts与js的主要区别。编译的时候会先校验类型，js不会校验。
+在线github登录vercel，直接import看结果
+
 上传生成环境vercel
 
 安装

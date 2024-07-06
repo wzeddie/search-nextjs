@@ -10,7 +10,7 @@ export async function deleteThreeData() {
         
         // 首先获取最后三条记录的_id
         const lastThreeDocuments = await collection.find().sort({ _id: -1 }).limit(3).toArray();
-        const idsToDelete = lastThreeDocuments.map(doc => doc._id);
+        const idsToDelete = lastThreeDocuments.map((doc: any) => doc._id);
 
         // 然后删除这些记录
         const deleteResult = await collection.deleteMany({ _id: { $in: idsToDelete } });

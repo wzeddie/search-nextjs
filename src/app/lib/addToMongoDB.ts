@@ -1,7 +1,7 @@
 //插入数据库模块
 const { connectToDatabase } = require('@/app/lib/connectToDB');//导入基础数据库连接模块
-
-export async function addToMongoDB(sendData) {
+//支持传入 Record<string, any>任意类型的值
+export async function addToMongoDB(sendData : Record<string, any>) {
     let client;
     try {
         client = await connectToDatabase();//建立连接
