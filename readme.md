@@ -157,22 +157,26 @@ sent-right-domain，get id: lxxetvql58rn4wtwg1t
 sent-right-domain，get id: lxxetvql58rn4wtwg1t
  GET /api/sent-right-domain?user_domain=lxxetvql58rn4wtwg1t 304 in 12ms
 解决了批量查询api问题
-d
+
 bug问题
 客户端还会打印4次。
-首页打开太慢
+首页打开太慢，已解决开启了网络3G模式
 批量查询结果a元素不能点击触发查询
+完成 添加删除功能，添加数据库修改功能，增删改查完整的功能。
+新增error，loading等页面
+解决TP鼠标滑过去有样式变化问题
+
+# 标记版本V8.2.0
 
 # 下一版本的改造内容：
-批量查询的结果，如何保存和传递问题
-默认情况下， app 目录中的所有组件都是服务器组件，但钩子仅在客户端可用。因此，您必须在涉及钩子的每个文件的顶部添加该 use client 指令。
-新增error，loading等页面
+
+上传生成环境vercel
+
 # 空
 解决pages/api和结果页，重复发起请求问题，一次domain，两次查询
-添加删除功能，添加数据库修改功能，增删改查完整的功能。
 添加用户登录和状态管理，签到签退问题。
-解决客户端控制面板提示bug问题
-解决TP鼠标滑过去有样式变化问题
+
+默认情况下， app 目录中的所有组件都是服务器组件，但钩子仅在客户端可用。因此，您必须在涉及钩子的每个文件的顶部
 
 1、将a元素用link代替:
 link组件的常规用法，nav导航，页面之间路由，不需要重新加载页面。
