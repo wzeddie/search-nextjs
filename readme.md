@@ -222,9 +222,9 @@ tsconfig:如果项目使用了 TypeScript，这个目录可能包含 TypeScript 
 
 
 # 部署到vercel
-在线github登录vercel，直接import看结果
-
-上传生成环境vercel
+在线github登录vercel，直接import看结果，上传生成环境vercel，部署也是成功的，但是无法进入resutl页面
+安装vercel dev，看情况，能正常运行并访问
+部署到生产环境，查看vercel。
 
 安装
 配置修改
