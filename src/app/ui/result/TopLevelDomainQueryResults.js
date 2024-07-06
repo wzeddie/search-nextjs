@@ -18,7 +18,7 @@ export default function TopLevelDomainQueryResults() {//传入参数
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/sent-piliang-domain`);//发起请求数据
+      const response = await fetch(`https://search-nextjs-one.vercel.app/api/sent-piliang-domain`);//发起请求数据
       const results = await response.json();
       const resultEntries = Object.entries(results);
       setresultEntries(resultEntries); // 使用 useState 设置 user_domain
