@@ -7,7 +7,7 @@ export default function RecentlySearched({ recentDomains }) { // 组件接收 pr
   const RSformRef = useRef(null); // 使用 useRef 来引用表单，在 form 中，将表单的引用赋值给 formRef
   const router = useRouter();
   const [isSubmittable, setIsSubmittable] = useState(true); // 控制按钮可点击状态
-  const [recentTreedata, setrecentDomains] = useState(recentDomains); // 控制链接可点击状态
+  const [recentTreedata, setrecentDomains] = useState(); // 控制链接可点击状态
 
   useEffect(() => {
     setrecentDomains(recentDomains)//初始化recentTreedata
