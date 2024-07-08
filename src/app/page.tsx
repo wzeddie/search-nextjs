@@ -2,11 +2,10 @@
 //next13版本之前，要通过getServerSideProps 和 getStaticProps。来实现获取数据返回给组件。
 //nextJS的13版本之后的特性，app 目录中的页面默认是 React 服务器组件。服务器组件可以直接进行服务器端数据获取操作，这使得代码更加简洁。
 
-import React, { useEffect, useState } from 'react';
 
 import dynamic from 'next/dynamic';
 import Loading from './loading'; // 动态导入loading的加载组件
-//ClientWrapper，是中间过渡组件，包含了DomainSearchForm和RecentlySearched
+
 const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), {
   ssr: false,
   loading: () => <Loading /> // 显示加载组件
@@ -14,30 +13,13 @@ const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), {
 
 import { getTreeData } from '@/app/lib/getTreeData'; // 导入获取数据模块。
 
+ 
 export default async function Page() {
-  const [recentDomains, setRecentDomains] = useState(null); // 使用useState来管理数据状态
-  useEffect(() => {
-    // 定义异步函数用于获取数据
-    const fetchData = async () => {
-      try {
-        const data = await getTreeData(); // 调用异步函数获取数据
-        setRecentDomains(data); // 使用setState更新数据状态
-      } catch (error) {
-        console.error('Failed to fetch recent domains:', error);
-      }
-    };
-
-    fetchData(); // 调用异步函数
-  }, []); // 空依赖数组确保仅在组件挂载时执行
-  // const recentDomains = await getTreeData();//服务端组件，直接可以数据。
+  const recentDomains = await getTreeData();//服务端组件，直接可以数据。
   return (
-    <section className="container bg-gray-50">
-      {/* <DomainSearchForm /> */}
-      {/* <RecentlySearched recentDomains={recentDomains}/> */}
+    <section className="container bg-gray-50"> 
       <ClientWrapper recentDomains={recentDomains} /> 
-
     </section>
-
   )
 }
 
