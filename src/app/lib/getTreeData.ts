@@ -1,7 +1,10 @@
 const { connectToDatabase } = require('@/app/lib/connectToDB');//导入基础数据库连接模块
+import { unstable_noStore as noStore } from 'next/cache';
+
 //返回数据最近的三条记录数据
 export async function getTreeData(
 ) {
+    noStore()
     let client; // 声明MongoClient实例变量
 
     try {
