@@ -45,11 +45,9 @@ const DomainSearchForm = () => {
     <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
       <div className="mx-auto max-w-xl text-center">
         <h1 className="text-3xl font-extrabold sm:text-5xl">
-          Search Domain  Information
-        </h1>
+        Lean Domain Search        </h1>
         <p className="mt-4 sm:text-xl/relaxed">
-          enter the domain name you wish to query ，only domain  with the following suffixes are supported: com, net, org, me, xyz, info, io, co, ai, biz, us, etc.
-        </p>
+        Domain Suffix Support:Our domain query tool supports a wide range of popular suffixes including .com, .net, .org, .me, .xyz, .info, .io, .co, .ai, .biz, and .us. This ensures that you can find information on a broad spectrum of domains, catering to various needs and preferences.        </p>
         <form className="space-y-4 font-[sans-serif] max-w-md mx-auto" id="myForm" onSubmit={handleSubmit} >
           <div className="max-w-md mx-auto font-[sans-serif]">
             <label className="mb-2 text-sm text-black block">Enter Domain  Like: www.xxx.com</label>

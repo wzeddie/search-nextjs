@@ -1,10 +1,21 @@
 import '@/app/global.css';//网页CSS
 import { Metadata } from 'next';//网页元数据
+import Head from 'next/head';
 //import { inter } from '@/app/ui/fonts'; 导入google字体
 import Header from './ui/header.js';//页眉
 import Footer from './ui/footer.js';//页脚
 //标准格式，children对应page页面默认组件
-export const metadata: Metadata = {
+interface ExtendedMetadata extends Metadata {
+  title: {
+    template: string;
+    default: string;
+  };
+  description: string;
+  metadataBase: URL;
+  googleAdsenseAccount: string; // 新增属性
+  keywords: string;
+}
+export const metadata: ExtendedMetadata = {
   title: {
     template: '%s | Lean Domain Search: Find Short, Available Domain Names',
     default: 'Lean Domain Search: Find Short, Available Domain Names',
