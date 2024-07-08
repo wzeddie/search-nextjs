@@ -6,12 +6,14 @@ import Footer from './ui/footer.js';//页脚
 //标准格式，children对应page页面默认组件
 export const metadata: Metadata = {
   title: {
-    template: '%s | Search Domain',
-    default: 'Search Domain',
+    template: '%s | Lean Domain Search: Find Short, Available Domain Names',
+    default: 'Lean Domain Search: Find Short, Available Domain Names',
   },
-  description: 'Enter the domain name you wish to query.',
-  metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
-  google-adsense-account:'ca-pub-7801648526886850',
+  description: 'Discover the perfect domain name for your website with Lean Domain Search. Our intuitive platform helps you find short, memorable, and available domain names quickly and easily. Start your online journey today!',
+  metadataBase: new URL('http://lean-domain.online'),
+  googleAdsenseAccount:'ca-pub-7801648526886850',
+  keywords:'Lean Domain Search, domain name generator, find domain names, unique domain names, domain search tool, domain availability, domain suggestions, domain brainstorming, domain name ideas, domain name search'
+
 };
 export default function RootLayout({
   children,
