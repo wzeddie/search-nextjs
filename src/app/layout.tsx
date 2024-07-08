@@ -33,6 +33,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+        <Head>
+        {/* 其他<head>中的元素 */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7801648526886850"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
       <body>
         <main>
           <Header />
