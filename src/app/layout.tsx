@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   },
   description: 'Enter the domain name you wish to query.',
   metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+  google-adsense-account:'ca-pub-7801648526886850',
 };
 export default function RootLayout({
   children,
