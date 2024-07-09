@@ -5,6 +5,16 @@ global.tempStorage = global.tempStorage || {};//全局变量用于存储domain�
 global.tempUser_domain = global.tempUser_domain || {};//全局变量用于存储用户输入的域名
 
 export default async function handler(req, res) {
+  // 设置 CORS 头信息
+  res.setHeader('Access-Control-Allow-Origin', '*'); // 允许所有域名访问
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // 允许的方法
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // 允许的头信息
+
+  // 处理预检请求
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
+    return;
+  }
   res.setHeader('Cache-Control', 'public, max-age=3600');//设置响应头服务端缓存机制。
 
   if (req.method === 'POST') {
