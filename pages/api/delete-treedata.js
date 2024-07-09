@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   const recentDomains = await getTreeData(); // 从数据库获取数据域名+后缀形式
   res.status(200).json(recentDomains);
 
-  //res.writeHead(302, { Location: `https://search-nextjs-one.vercel.app/` });//告诉客户端重定向到结果页面
+  //res.writeHead(302, { Location: `https://lean-domain.online/` });//告诉客户端重定向到结果页面
   res.end();
 //   revalidatePath('/');
 //   redirect('/');

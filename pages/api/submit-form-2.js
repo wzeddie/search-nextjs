@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     // const encodedId = encodeURIComponent(JSON.stringify(safeData));
     global.tempStorage[uniqueId]=safeData ;
     console.log('saved the tempStorage[uniqueId] ',uniqueId,tempUser_domain )
-    res.writeHead(302, { Location: `https://search-nextjs-one.vercel.app/result?user_domain=${uniqueId}` });//告诉客户端重定向到结果页面
+    res.writeHead(302, { Location: `https://lean-domain.online/result?user_domain=${uniqueId}` });//告诉客户端重定向到结果页面
     res.end();
 
   } else {

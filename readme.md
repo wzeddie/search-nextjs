@@ -225,9 +225,9 @@ tsconfig:如果项目使用了 TypeScript，这个目录可能包含 TypeScript 
 在线github登录vercel，直接import看结果，上传生成环境vercel，部署也是成功的，但是无法进入resutl页面
 安装vercel dev，看情况，能正常运行并访问
 部署到生产环境，查看vercel。
-GET https://search-nextjs-one.vercel.app/result?user_domain=lya3pxvutp74c05ryjr net::ERR_CONNECTION_REFUSED
+GET https://lean-domain.online/result?user_domain=lya3pxvutp74c05ryjr net::ERR_CONNECTION_REFUSED
 生成环境下，不能使用测试环境的域名，需要按生产的域名修改
-https://search-nextjs-one.vercel.app/
+https://lean-domain.online/
 
 
 
