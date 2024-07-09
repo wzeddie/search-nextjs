@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lean-domain.online</loc> 
+    <lastmod>2024-04-06T15:02:24.021Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1</priority>
+  </url>
+    <url>
+    <loc>https://lean-domain.online/result</loc> 
+    <lastmod>2024-04-06T15:02:24.021Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1</priority>
+  </url>
+  <!-- 其他 <url> 条目可以继续添加在这里 -->
+</urlset>
