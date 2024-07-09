@@ -34,7 +34,7 @@ export default function Page() {
 
   const fetchData = async (id:any) => {
     try {
-      const response = await fetch(`https://lean-domain.online/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
+      const response = await fetch(`/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
       const data = await response.json();//从服务端下载查询的客户数据
 
       // 打印Cache-Control头部，了解缓存行为
