@@ -41,21 +41,44 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <meta name="google-adsense-account" content="ca-pub-7801648526886850"> */}
+      {/* google广告的自动布放位置，植入的代码。*/}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7801648526886850"
+        crossOrigin="anonymous"
+      ></script>
+      {/* <!-- 由 Google 结构化数据标记助手生成的 JSON-LD 标记。 需要用转移符号进行处理--> */}
+      <script type="application/ld+json">
+        {`{
+          "@context": "http://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Lean Domain Search",
+        "url": "https://www.lean-domain.online/"
+}`}
+      </script>
 
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7801648526886850"
-          crossOrigin="anonymous"
-        ></script>
-
-        <body>
-          <main>
-            <Header />
-            {children}
-            <Footer />
-          </main>
-        </body>
+      <body>
+        <main>
+          <Header />
+          {children}
+          <Footer />
+        </main>
+        {/* 添加添加流量统计代码,analytics */}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-VTSECLCSQG"></script>
+      <script>
+        (window.dataLayer = window.dataLayer || []).push(function() {
+          window.gtag = function(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-VTSECLCSQG');
+        });
+      </script>
+    `
+          }}
+        ></div>
+      </body>
     </html>
   )
 }
