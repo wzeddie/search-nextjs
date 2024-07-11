@@ -230,8 +230,10 @@ GET https://lean-domain.online/result?user_domain=lya3pxvutp74c05ryjr net::ERR_C
 https://lean-domain.online/
 
 部署外网的过程，写到notion，兴趣爱好中lean-domain部署过程
-
+部署方法，先build，自动检查ts的语法问题，然后在推送git上。
 # 丰富网站内容
+logo问题
+
 about us
 help
 contact
