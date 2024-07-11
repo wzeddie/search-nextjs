@@ -229,7 +229,18 @@ GET https://lean-domain.online/result?user_domain=lya3pxvutp74c05ryjr net::ERR_C
 生成环境下，不能使用测试环境的域名，需要按生产的域名修改
 https://lean-domain.online/
 
+部署外网的过程，写到notion，兴趣爱好中lean-domain部署过程
 
+# 丰富网站内容
+about us
+help
+contact
+pricing-收费服务，接入ai定制化生成lean域名
+privacy
+https://logodiffusion.com/contact.html，参考目标网址
+
+© 2023 Logo Diffusion. All rights reserved.
+接入外联地址，git，x，facebook等
 
 
 
