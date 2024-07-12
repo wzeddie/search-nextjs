@@ -17,9 +17,9 @@ interface ExtendedMetadata extends Metadata {
   metadataBase: URL;
   googleAdsenseAccount: string; // 新增属性
   keywords: string;
-  icons: {
-    icon: string // 确保这个文件在public目录下
-  },
+  // icons: {
+  //   icon: string // 确保这个文件在public目录下
+  // },
   // scripts:string[];
 }
 export const metadata: ExtendedMetadata = {
