@@ -232,7 +232,7 @@ https://lean-domain.online/
 部署外网的过程，写到notion，兴趣爱好中lean-domain部署过程
 部署方法，先build，自动检查ts的语法问题，然后在推送git上。
 # 丰富网站内容
-logo问题
+logo问题 -完成 https://ray.so/icon?q=web，在线logo制作
 
 about us
 help
