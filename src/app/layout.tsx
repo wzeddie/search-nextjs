@@ -17,6 +17,9 @@ interface ExtendedMetadata extends Metadata {
   metadataBase: URL;
   googleAdsenseAccount: string; // 新增属性
   keywords: string;
+  icons: {
+    icon: string // 确保这个文件在public目录下
+  },
   // scripts:string[];
 }
 export const metadata: ExtendedMetadata = {
@@ -28,8 +31,10 @@ export const metadata: ExtendedMetadata = {
   metadataBase: new URL('http://lean-domain.online'),
   googleAdsenseAccount: 'ca-pub-7801648526886850',
   keywords: 'Lean Domain Search, domain name generator, find domain names, unique domain names, domain search tool, domain availability, domain suggestions, domain brainstorming, domain name ideas, domain name search',
-
-};
+  icons: {
+    icon: 'extension_icon.png',
+},
+}
 export default function RootLayout({
   children,
 }: {
