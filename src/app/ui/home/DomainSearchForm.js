@@ -12,23 +12,37 @@ const DomainSearchForm = () => {
   const [domainName, setDomainName] = useState('');//初始目标域名为空
   const [isSubmittable, setIsSubmittable] = useState(true); // 控制按钮可点击状态
   // 处理表单提交的事件函数
-  const handleSubmit =async  (event) => {
-    event.preventDefault();
-    setIsSubmittable(false);    // 设置按钮为不可再提交
+  const handleSubmit = async (event) => {
+    event.preventDefault();    
+
     const form = event.target;//获取表单input的元素
     const formData = new FormData(form);
+
     // 将 FormData 转换为 application/x-www-form-urlencoded 格式的字符串
     const data = Object.fromEntries(formData.entries());
-    const response=await fetch('/api/submit-form-2', {//对应后台api接口，表单查询处理请求
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',//设置为服务端可以方便获取的接收格式
-      },
-      body: JSON.stringify(data),//发送服务端的input值
-    });
-    if (response.redirected) {
-      router.push(response.url);//接收服务器重定向
+    //  data的格式 {
+    //     "user_domain": "www.juaner.com"
+    // }
+    console.log('user input data', data.user_domain)
+    const domainParts = data.user_domain.split('.');//要求格式为www.xxx.com这样
+    console.log('user input data', domainParts)
+    if (domainParts.length < 3) {//如果格式符合www.xxx.com形式
+      alert('Error: The domain format is incorrect,Please input like: www.google.com');
+    }else{
+      setIsSubmittable(false);    // 设置按钮为不可再提交
+
+      const response = await fetch('/api/submit-form-2', {//对应后台api接口，表单查询处理请求
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',//设置为服务端可以方便获取的接收格式
+        },
+        body: JSON.stringify(data),//发送服务端的input值
+      });
+      if (response.redirected) {
+        router.push(response.url);//接收服务器重定向
+      }
     }
+    
   };
 
 
@@ -45,9 +59,9 @@ const DomainSearchForm = () => {
     <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
       <div className="mx-auto max-w-xl text-center">
         <h1 className="text-3xl font-extrabold sm:text-5xl">
-        Lean Domain Search        </h1>
+          Lean Domain Search        </h1>
         <p className="mt-4 sm:text-xl/relaxed">
-        Domain Suffix Support:Our domain query tool supports a wide range of popular suffixes including .com, .net, .org, .me, .xyz, .info, .io, .co, .ai, .biz, and .us. This ensures that you can find information on a broad spectrum of domains, catering to various needs and preferences.        </p>
+          Domain Suffix Support:Our domain query tool supports a wide range of popular suffixes including .com, .net, .org, .me, .xyz, .info, .io, .co, .ai, .biz, and .us. This ensures that you can find information on a broad spectrum of domains, catering to various needs and preferences.        </p>
         <form className="space-y-4 font-[sans-serif] max-w-md mx-auto" id="myForm" onSubmit={handleSubmit} >
           <div className="max-w-md mx-auto font-[sans-serif]">
             <label className="mb-2 text-sm text-black block">Enter Domain  Like: www.xxx.com</label>
@@ -59,7 +73,7 @@ const DomainSearchForm = () => {
                 </svg>
               </div>
 
-              <input type='text' 
+              <input type='text'
                 className="text-sm text-black rounded bg-white w-full h-full  outline-none px-4"
                 id="domainname"
                 name="user_domain"
@@ -76,7 +90,7 @@ const DomainSearchForm = () => {
             id="searchdomain" disabled={!isSubmittable} style={{ opacity: isSubmittable ? 1 : 0.5 }}
           >Submit</button>
         </form>
- 
+
       </div>
     </div>
   );
