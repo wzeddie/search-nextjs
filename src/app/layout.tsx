@@ -31,9 +31,9 @@ export const metadata: ExtendedMetadata = {
   metadataBase: new URL('http://lean-domain.online'),
   googleAdsenseAccount: 'ca-pub-7801648526886850',
   keywords: 'Lean Domain Search, domain name generator, find domain names, unique domain names, domain search tool, domain availability, domain suggestions, domain brainstorming, domain name ideas, domain name search',
-  icons: {
-    icon: '/extension_icon.png',
-  },
+  // icons: {
+  //   icon: '/extension_icon.png',
+  // },
 }
 export default function RootLayout({
   children,
@@ -42,7 +42,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
       <link rel="icon" href="/favicon.ico" />
+      </head>
 
       {/* google广告的自动布放位置，植入的代码。*/}
       <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7801648526886850"
