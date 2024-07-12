@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/extension.ico" />
       </head>
 
       {/* google广告的自动布放位置，植入的代码。*/}
