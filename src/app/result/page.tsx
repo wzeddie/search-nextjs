@@ -1,4 +1,4 @@
-//结果页面
+//结果页面，客户端组件
 'use client';
 //result.html汇总组件，用于接收参数，并将各个组件汇总
 
@@ -31,11 +31,11 @@ export default function Page() {
       console.error('No search parameters found');
     }
   }, [searchParams]); // 当参数发生变化时，重新进行获取，并渲染
-
+//客户端组件要获取数据，不能直接调用服务端lib函数，而是要通过api发起请求，然后服务端下发，并进行渲染。
   const fetchData = async (id:any) => {
     try {
       const response = await fetch(`/api/sent-right-domain?user_domain=${id}`, { cache: 'force-cache' });
-      const data = await response.json();//从服务端下载查询的客户数据
+      const data = await response.json();//从服务端下载查询的客户数据，并且转换为json格式
 
       // 打印Cache-Control头部，了解缓存行为
       const cacheControl = response.headers.get('Cache-Control');

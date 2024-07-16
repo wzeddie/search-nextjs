@@ -65,11 +65,85 @@ app/lib，数据库查询，链接，删除，以及向第三方api查询域名�
 
 
 # 哪些是服务端组件，哪些是客户端组件？
-在 Next.js 中，组件的职责和环境通常决定了它们是否是服务器端组件或客户端组件。
-以下是一些常见的约定和示例：
-所有的page组件,page.js/jsx/ts/tsx，都是服务端组件，获取数据和服务器端渲染（SSR）。
-lib文件下的库文件，都是服务端组件，包含数据获取或其他与服务器端交互的逻辑
-app/ui或者app/components，是客户端组件
+
+服务端组件就是在服务端渲染的组件，使用 NextJS v13 的项目，只要是在 app 目录内的页面，全部默认为服务端组件
+除非在组件里面添加use client命令，转换为客户端组件。注意点：服务端组件是在服务端运行的，所以就没有调用浏览器 API 的能力了，比如要使用类似于window.xxx、useState、useEffect等方法，需要在文件开头用“use client”声明。
+服务端组件的三种渲染策略：静态渲染-比如静态博客，动态渲染——动态数据获取，用户cookie，URL参数等，流失渲染--块渲染产品评论信息，先看到页面预览 loading.js。
+
+客户端组件的优势
+交互性：客户端组件可以使用状态、效果和事件监听器，这意味着它们可以向用户提供即时反馈并更新用户界面。
+浏览器 API：客户端组件可以访问浏览器 API，如 window，从而为特定用例构建用户界面。
+不利于 SEO，因为搜索引擎可能只看到空的 HTML，而不是实际内容。
+服务端组件的优势
+数据获取：服务端组件具备完整的服务端能力，所以可以直接与数据库或其他数据源进行交互。这消除了需要从客户端到服务器的额外请求，从而加速了数据获取。
+安全性：因为渲染是在服务器上进行的，所以你可以在服务器上使用敏感的 API 密钥或令牌，而不必担心它们被暴露给客户端用户。
+缓存：服务端渲染的结果可以被缓存。这意味着对于经常被访问的页面，你可以存储已经渲染的HTML，从而快速地为后续的请求提供响应，而不必每次都重新渲染。
+包大小：一些库或框架可能非常大，如果全部发送到客户端，会增加首次加载时间。通过在服务器上使用这些库，你可以避免增加客户端的包大小。
+初始页面加载和首次内容绘制 (FCP)：服务端渲染的页面可以立即为用户提供可见的内容，而不必等待客户端JavaScript加载和执行。
+搜索引擎优化和社交网络分享：服务端渲染的页面为搜索引擎提供了完整的HTML内容，这有助于提高SEO排名。此外，社交媒体平台也可以预览这些页面，从而提高分享的吸引力。
+流式传输：这是一个更高级的优化。你可以将页面渲染分成多个部分，并在它们准备好时发送到客户端。这允许用户更早地看到部分内容，而不必等待整个页面在服务器上渲染完成。
+服务端可以加载客户端组件，一般需要动态加载。但是客户端组件不能加载服务端组件。
+假如一个组件需要交互，那么它只能是客户端组件。一般情况采取以下方式，实现这种场景：
+在服务器组件中预获取用户数据。
+将数据作为 props 传递给客户端组件。
+为了使这个过程有效且无错误，从服务器组件传递给客户端组件的 props 必须是可序列化的。
+什么是可序列化，可序列化（Serializable）意味着数据可以被转换成一种格式，这种格式可以被网络传输，并且在另一端可以被反序列化，恢复成原始数据结构。比如JSON.stringify() ——转变为字符串与 JSON.parse() ——转变为json对象
+当你从服务端组件向客户端组件传递 props 时，这些数据需要在服务器上生成并序列化，然后通过网络发送到客户端，最后在客户端上反序列化以供使用。不能被序列化的函数，正则表达式，datatime对象。
+
+客户端组件不能直接加载服务端组件。
+'use client'
+// You cannot import a Server Component into a Client Component.
+import ServerComponent from './Server-Component'
+正确用法，创建一个中间页面，分别调用客户端组件和服务端组件。服务端组件作为客户端的参数props下发。
+// This pattern works:
+// You can pass a Server Component as a child or prop of a
+// Client Component.
+import ClientComponent from './client-component'
+import ServerComponent from './server-component'
+ 
+// Pages in Next.js are Server Components by default
+export default function Page() {
+  return (
+    <ClientComponent>
+      <ServerComponent />//服务端组件可以作为
+    </ClientComponent>
+  )
+}
+
+客户端组件代码：
+'use client'
+import { useState } from 'react'
+export default function ClientComponent({
+  children,
+}: {
+  children: React.ReactNode//期望接收任何可以作为 React 节点的子元素
+}) {
+  const [count, setCount] = useState(0)
+ 
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+      {children}//子元素会在这渲染加载
+    </>
+  )
+}
+React.ReactNode 是 React 中的一个类型，它代表所有可以被渲染的元素类型。这包括：
+
+string
+number
+ReactElement 或任何 React 组件的实例
+ReactFragment
+boolean（在渲染时会被忽略）
+null
+
+假如客户端组件想要获取数据，如何请求：
+路由处理程序：在 NextJS 中，你可以使用 API 路由来在服务器上获取数据，并从客户端使用 AJAX 请求进行调用。
+
+随着 Web 技术的发展，现在有多种方式可以实现 AJAX 功能：
+XMLHttpRequest：这是 AJAX 最初和最传统的实现方式。它是一个 JavaScript 对象，允许你发起 HTTP 请求并与服务器交换数据。
+Fetch API：是现代浏览器提供的基于 Promise 的 API，用于发起 HTTP 请求。Fetch API 提供了更简洁的语法和更强大功能，逐渐成为实现 AJAX 的首选方式。
+jQuery.ajax：如果你使用 jQuery 库，$.ajax 方法提供了一个更高级的接口来执行 AJAX 请求，它封装了 XMLHttpRequest 的复杂性，并提供了更多的配置选项和方便的回调处理。
+其他第三方库和框架：许多现代前端框架和库（如 Axios、Angular 的 HttpClient 等）提供了自己的 AJAX 请求方法，它们通常提供了更易用的接口和额外的功能，如请求取消、自动转换 JSON 等。
 
 # 打版本 v8.1.0
 
@@ -233,6 +307,23 @@ https://lean-domain.online/
 部署方法，先build，自动检查ts的语法问题，然后在推送git上。
 # 丰富网站内容
 logo问题 -完成 https://ray.so/icon?q=web，在线logo制作
+
+
+# 讲清楚 Next.js 里的 CSR, SSR, SSG 和 ISR
+服务端组件就是在服务端渲染的组件，但是哪些渲染是有利于SEO的
+客户端渲染（CSR），Next.js 中在 useEffect() 中请求数据就属于 CSR
+SSR，Next.js 中，要使用服务器端渲染，需要导出一个名为 getServerSideProps 的异步函数。服务器将在每次请求页面时优先调用该函数。虽然 getServerSideProps 依然可用，在 Next.js 13 的新 App Router 中，引入了一个新的数据获取方法，称为 Server Actions，这些方法可以在服务器端直接调用。
+
+SSG，静态页面渲染，特别是带数据的静态页面。只要页面内使用了getStaticProps，那么 Next.js 都将在 build 时调用并获取数据，然后把数据传给客户端（即 Blog 组件），最后把客户端代码打包成 HTML。或者，页面路径依赖数据，要同时使用getStaticProps和getStaticPaths完成构建时的数据拉取。——不适合内容经常变动或需要实时更新的应用。
+增量静态生成 (ISR)，使用 getStaticProps，核心就在于revalidate和fallback。revalidate设置的时间间隔后再次运行getStaticProps
+如何选择合适的渲染策略建议
+高度交互的应用：如果你正在开发一个如单页应用（SPA）那样高度交互的应用，CSR 可能是最佳选择。一旦页面加载，用户的任何交互都将非常迅速，无需再次从服务器加载内容。
+需要 SEO 优化的应用：如果你的应用依赖于搜索引擎优化，SSR 或 SSG 是更好的选择。这两种方法都会提供完整的 HTML，有助于搜索引擎索引。
+内容静态但更新频繁的网站：例如博客或新闻网站，ISR 是一个很好的选择。它允许内容在背景中更新，而用户仍然可以快速访问页面。
+内容基本不变的网站：对于内容很少或根本不更改的网站，SSG 是最佳选择。一次生成，无需再次渲染，提供了最快的加载速度。
+混合内容的应用：Next.js 允许你在同一个应用中混合使用不同的渲染策略。例如，你可以使用 SSR 渲染首页，使用 SSG 渲染博客部分，而使用 CSR 渲染用户交互部分。
+
+你可以使用 SSR 渲染首页，使用 SSG 渲染博客部分，而使用 CSR 渲染用户交互部分。
 
 about us
 help

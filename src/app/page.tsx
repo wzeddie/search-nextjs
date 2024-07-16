@@ -9,14 +9,14 @@ import Loading from './loading'; // 动态导入loading的加载组件
 
 const ClientWrapper = dynamic(() => import('./ui/home/ClientWrapper'), {
   ssr: false,
-  loading: () => <Loading /> // 显示加载组件
+  loading: () => <Loading /> // 显示加载组件，一般情况服务端建议通过动态加载客户端组件。
 });
 
 import { getTreeData } from '@/app/lib/getTreeData'; // 导入获取数据模块。
 
 
 export default async function Page() {
-  const recentDomains = await getTreeData();//服务端组件，直接可以数据。
+  const recentDomains = await getTreeData();//服务端组件，直接可以数据。不需要发起fatch api请求。
   return (
     // <MyHead />
 
