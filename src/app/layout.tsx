@@ -65,13 +65,13 @@ export default function RootLayout({
           {children}
           <Footer />
         </main>
-        {/* 添加添加流量统计代码,analytics */}
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-VTSECLCSQG" />
+        {/* 添加添加流量统计代码,analytics ，需要提前创建新的网站数据流量多媒体*/}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-16GVFXSDNP" />
         <Script id="show-banner">
           {` (window.dataLayer = window.dataLayer || []).push(function() {
             window.gtag = function(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-VTSECLCSQG');
+            gtag('config', 'G-16GVFXSDNP');
           });`}
         </Script>
       </body>
