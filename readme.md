@@ -11,6 +11,9 @@ git remote add origin git@github.com:wzeddie/search-nextjs.git
 git push -u origin main
 完成
 
+启动方式：npm run dev
+
+
 二、参考notion的部署next.js，并初始化
   TypeScript 的 JSX 语法的扩展。JSX 是 JavaScript 的语法扩展
   js：比如砖块，jsx：像乐高积木，由不同的砖块组成
