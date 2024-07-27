@@ -25,8 +25,15 @@ const Header = () => {
             <li>
               <a className="text-gray-800 transition hover:text-gray-500/75" href="/"> Home </a>
             </li>
-   
-           
+            <li>
+              <a className="text-gray-800 transition hover:text-gray-500/75" href="/contact"> contact </a>
+            </li>
+            <li>
+              <a className="text-gray-800 transition hover:text-gray-500/75" href="/protected"> protected </a>
+            </li>
+            <li>
+              <a className="text-gray-800 transition hover:text-gray-500/75" href="/auth/signin"> signin </a>
+            </li>
           </ul>
         </nav>
   
